@@ -1,0 +1,11 @@
+#Internal package file, do not edit.
+#Mon Mar 12 23:13:36 EDT 2018
+1.base=/home/raj/AndroidStudioProjects/Parking_Reservation_Application/Parking-Reservation/android/app/build/intermediates/assets/debug
+0.baseType=DIRECTORY
+1.baseType=DIRECTORY
+count=2
+1.set=ASSET
+0.path=index.android.bundle.meta
+0.set=ASSET
+0.base=/home/raj/AndroidStudioProjects/Parking_Reservation_Application/Parking-Reservation/android/app/build/intermediates/assets/debug
+1.path=index.android.bundle
