@@ -10,6 +10,7 @@ const Button = ({ onPress, children }) => {
 }
 
 const styles = StyleSheet.create({
+    
     button: {
         marginTop: 10,
         padding: 20,

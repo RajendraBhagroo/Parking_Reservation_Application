@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, StatusBar, TouchableOpacity } from 'react-nativ
 
 /* Import Custom Components */
 import Logo from '../components/Logo';
-import Form from '../components/Form';
+import LoginForm from '../components/LoginForm';
 
 /* Allows For Routing */
 import { Actions } from 'react-native-router-flux';
@@ -27,13 +27,13 @@ export default class Login extends React.Component {
 				
 				<Logo/>
 				
-				<Form type = "Login"/>
+				<LoginForm type = "Login"/>
 				
 				<View style = {styles.signupTextCont}>
-					<Text style = {styles.signupText}>Don't have an account yet?</Text>
+					<Text style = {styles.signupText}>Don't have an account yet? </Text>
 					
 					<TouchableOpacity onPress = {this.signup}>
-					  <Text style = {styles.signupButton}> Sign Up</Text>
+					  <Text style = {styles.signupButton}>Sign Up</Text>
 					</TouchableOpacity>
 				</View>
 
@@ -67,7 +67,8 @@ const styles = StyleSheet.create({
   signupButton: {
   	color: '#ffffff',
   	fontSize: 16,
-  	fontWeight: '500'
+		fontWeight: '500',
+		textDecorationLine: 'underline'
 	}
 	
 });

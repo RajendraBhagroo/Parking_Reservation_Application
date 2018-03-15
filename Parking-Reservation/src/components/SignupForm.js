@@ -25,6 +25,14 @@ export default class Logo extends React.Component {
               ref                    = {(input) => this.password = input}
               />
 
+          <TextInput style = {styles.inputBox} 
+              underlineColorAndroid  = 'rgba(0,0,0,0)' 
+              placeholder            = "Verify Password"
+              secureTextEntry        = {true}
+              placeholderTextColor   = "#ffffff"
+              ref                    = {(input) => this.password = input}
+              />
+
            <TouchableOpacity style = {styles.button}>
              <Text style = {styles.buttonText}>{this.props.type}</Text>
            </TouchableOpacity>
