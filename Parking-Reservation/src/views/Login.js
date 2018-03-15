@@ -19,6 +19,11 @@ export default class Login extends React.Component {
 	render() {
 		return (
 			<View style = {styles.container}>
+
+				<StatusBar
+          backgroundColor="#505254"
+          barStyle="light-content"
+        />
 				
 				<Logo/>
 				
@@ -28,7 +33,7 @@ export default class Login extends React.Component {
 					<Text style = {styles.signupText}>Don't have an account yet?</Text>
 					
 					<TouchableOpacity onPress = {this.signup}>
-					  <Text style = {styles.signupButton}> Signup</Text>
+					  <Text style = {styles.signupButton}> Sign Up</Text>
 					</TouchableOpacity>
 				</View>
 
@@ -40,7 +45,7 @@ export default class Login extends React.Component {
 const styles = StyleSheet.create({
 
   container: {
-    backgroundColor: '#455a64',
+    backgroundColor: '#292a2b',
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center'

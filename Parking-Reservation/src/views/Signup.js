@@ -1,33 +1,38 @@
 import React from 'react';
 import { Component } from 'react';
-import { StyleSheet, Text, View, StatusBar , TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, StatusBar, TouchableOpacity } from 'react-native';
 
 /* Import Custom Components */
 import Logo from '../components/Logo';
 import Form from '../components/Form';
 
 /* Allows For Routing */
-import {Actions} from 'react-native-router-flux';
+import { Actions } from 'react-native-router-flux';
 
 export default class Signup extends React.Component {
 
   /* Redirects To Login View */
   login() {
-      Actions.pop();
+      Actions.login();
   }
 
 	render() {
 		return (
 			<View style = {styles.container}>
+
+      	<StatusBar
+          backgroundColor="#505254"
+          barStyle="light-content"
+        />
 				
         <Logo/>
 				
-        <Form type = "Signup"/>
+        <Form type = "Sign Up"/>
 				
         <View style = {styles.signupTextCont}>
 					<Text style = {styles.signupText}>Already have an account?</Text>
 					
-          <TouchableOpacity onPress={this.login}>
+          <TouchableOpacity onPress = {this.login}>
             <Text style = {styles.signupButton}> Sign in</Text>
           </TouchableOpacity>
 				</View>
@@ -40,7 +45,7 @@ export default class Signup extends React.Component {
 const styles = StyleSheet.create({
 
   container: {
-    backgroundColor: '#455a64',
+    backgroundColor: '#292a2b',
     flex: 1,
     alignItems: 'center',
     justifyContent:'center'
