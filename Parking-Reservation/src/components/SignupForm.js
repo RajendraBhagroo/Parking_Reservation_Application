@@ -4,6 +4,18 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-nativ
 
 export default class Logo extends React.Component {
 
+  /* Contructor & focusNextField Used For TextInput Transitions */
+  constructor(props) {
+    super(props);
+
+    this.focusNextField = this.focusNextField.bind(this);
+    this.inputs = {};
+  }
+
+  focusNextField(id) {
+    this.inputs[id].focus();
+  }
+
 	render(){
 		return(
 			<View style = {styles.container}>
@@ -13,16 +25,19 @@ export default class Logo extends React.Component {
               placeholder            = "Email"
               placeholderTextColor   = "#ffffff"
               selectionColor         = "#fff"
+              blurOnSubmit           = { false }
               keyboardType           = "email-address"
-              onSubmitEditing        = {()=> this.password.focus()}
+              onSubmitEditing        = {() => {this.focusNextField("Password");}}
               />
 
           <TextInput style = {styles.inputBox} 
               underlineColorAndroid  = 'rgba(0,0,0,0)' 
               placeholder            = "Password"
               secureTextEntry        = {true}
+              blurOnSubmit           = { false }
               placeholderTextColor   = "#ffffff"
-              ref                    = {(input) => this.password = input}
+              ref                    = {(input) => {this.inputs['Password'] = input;}}
+              onSubmitEditing        = {() => {this.focusNextField("Verify Password");}}
               />
 
           <TextInput style = {styles.inputBox} 
@@ -30,7 +45,8 @@ export default class Logo extends React.Component {
               placeholder            = "Verify Password"
               secureTextEntry        = {true}
               placeholderTextColor   = "#ffffff"
-              ref                    = {(input) => this.password = input}
+              ref                    = {(input) => {this.inputs['Verify Password'] = input;}}
+              onSubmitEditing        = {(input) => {this.password = input}}
               />
 
            <TouchableOpacity style = {styles.button}>

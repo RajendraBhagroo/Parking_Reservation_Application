@@ -14,6 +14,7 @@ export default class Logo extends React.Component {
               placeholderTextColor   = "#ffffff"
               selectionColor         = "#fff"
               keyboardType           = "email-address"
+              blurOnSubmit           = { false }
               onSubmitEditing        = {()=> this.password.focus()}
               />
 
