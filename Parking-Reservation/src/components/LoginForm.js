@@ -5,7 +5,7 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-nativ
 /* Allows For Routing */
 import { Actions } from 'react-native-router-flux';
 
-export default class Logo extends React.Component {
+export default class LoginForm extends React.Component {
 
   /* Redirects To ReservationMap View */
 	reservationMap() {

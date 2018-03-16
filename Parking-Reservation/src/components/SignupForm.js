@@ -1,16 +1,35 @@
 import React from 'react';
 import { Component } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, ToastAndroid } from 'react-native';
 
 /* Allows For Routing */
 import { Actions } from 'react-native-router-flux';
 
-export default class Logo extends React.Component {
+export default class SignupForm extends React.Component {
 
   /* Redirects To Login View */
   loginView() {
     Actions.login();
+    ToastAndroid.showWithGravityAndOffset(
+                 'Successfully Created Account!',
+                 ToastAndroid.SHORT,
+                 ToastAndroid.BOTTOM,
+                 25,
+                 300
+                 );
   }
+
+  /*
+  SignupSuccessToast() {
+    ToastAndroid.showWithGravityAndOffset(
+      'Successfully Created Account!',
+      ToastAndroid.SHORT,
+      ToastAndroid.BOTTOM,
+      25,
+      300
+    );
+  }
+  */
 
   /* Contructor & focusNextField Used For TextInput Transitions */
   constructor(props) {
