@@ -2,7 +2,15 @@ import React from 'react';
 import { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 
+/* Allows For Routing */
+import { Actions } from 'react-native-router-flux';
+
 export default class Logo extends React.Component {
+
+  /* Redirects To ReservationMap View */
+	reservationMap() {
+		Actions.reservationMap();
+	}
 
 	render(){
 		return(
@@ -26,11 +34,11 @@ export default class Logo extends React.Component {
               ref                    = {(input) => this.password = input}
               />
 
-          <TouchableOpacity style = {styles.loginButton}>
+          <TouchableOpacity style = {styles.loginButton} onPress = {this.reservationMap}>
             <Text style = {styles.loginButtonText}>{this.props.type}</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style = {styles.guestButton} onPress = {this.button}>
+          <TouchableOpacity style = {styles.guestButton} onPress = {this.reservationMap}>
 					  <Text style = {styles.guestButtonText}>Continue As Guest</Text>
 					</TouchableOpacity>
 

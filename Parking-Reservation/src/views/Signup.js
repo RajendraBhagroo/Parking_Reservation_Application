@@ -12,8 +12,8 @@ import { Actions } from 'react-native-router-flux';
 export default class Signup extends React.Component {
 
   /* Redirects To Login View */
-  login() {
-      Actions.login();
+  loginView() {
+    Actions.login();
   }
 
 	render() {
@@ -32,7 +32,7 @@ export default class Signup extends React.Component {
         <View style = {styles.signupTextCont}>
 					<Text style = {styles.signupText}>Already have an account? </Text>
 					
-          <TouchableOpacity onPress = {this.login}>
+          <TouchableOpacity onPress = {this.loginView}>
             <Text style = {styles.signupButton}>Sign in</Text>
           </TouchableOpacity>
 				</View>

@@ -5,6 +5,7 @@ import { Router, Stack, Scene } from 'react-native-router-flux';
 /* Import Views For Routing */
 import Login  from './views/Login';
 import Signup from './views/Signup';
+import ReservationMap from './views/ReservationMap';
 
 export default class Routes extends React.Component {
 	render() {
@@ -13,6 +14,7 @@ export default class Routes extends React.Component {
 			    <Stack key="root" hideNavBar={true}>
 			      <Scene key="login"  component = {Login}  title = "Login" initial = {true}/>
 			      <Scene key="signup" component = {Signup} title = "Register"/>
+				  <Scene key="reservationMap" component = {ReservationMap} title = "ReservationMap"/>
 			    </Stack>
 			 </Router>
 			)

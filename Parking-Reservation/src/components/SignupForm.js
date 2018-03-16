@@ -2,7 +2,15 @@ import React from 'react';
 import { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 
+/* Allows For Routing */
+import { Actions } from 'react-native-router-flux';
+
 export default class Logo extends React.Component {
+
+  /* Redirects To Login View */
+  loginView() {
+    Actions.login();
+  }
 
   /* Contructor & focusNextField Used For TextInput Transitions */
   constructor(props) {
@@ -49,7 +57,7 @@ export default class Logo extends React.Component {
               onSubmitEditing        = {(input) => {this.password = input}}
               />
 
-           <TouchableOpacity style = {styles.button}>
+           <TouchableOpacity style = {styles.button} onPress = {this.loginView}>
              <Text style = {styles.buttonText}>{this.props.type}</Text>
            </TouchableOpacity>
 

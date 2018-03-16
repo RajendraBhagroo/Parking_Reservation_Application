@@ -13,7 +13,7 @@ export default class Login extends React.Component {
 
   /* Redirects To Login View */
 	signup() {
-		Actions.signup()
+		Actions.signup();
 	}
 
 	render() {
