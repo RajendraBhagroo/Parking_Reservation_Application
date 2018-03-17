@@ -1,6 +1,6 @@
 import React from 'react';
 import { Component } from 'react';
-import { StyleSheet, Text, View, StatusBar, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, StatusBar, TouchableOpacity, Vibration } from 'react-native';
 
 /* Import Custom Components */
 import Logo from '../components/Logo';
@@ -15,6 +15,9 @@ export default class Signup extends React.Component {
   /* Redirects To Login View */
   loginView() {
     Actions.login();
+
+		/* Vibrates Small Sign in Button */
+		Vibration.vibrate(20);
   }
 
   

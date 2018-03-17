@@ -1,6 +1,6 @@
 import React from 'react';
 import { Component } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, ToastAndroid } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, ToastAndroid, Vibration } from 'react-native';
 import * as firebase from 'firebase';
 
 
@@ -32,6 +32,9 @@ export default class SignupForm extends React.Component {
   /* Firebase : Authentication -> Create User */
   onSignupPress() {
     let { email, password, verifyPassword } = this.state;
+
+    /* Vibrates Sign Up Button */
+    Vibration.vibrate(20);
 
     email = email.trim().toLocaleLowerCase();
     password = password.trim();

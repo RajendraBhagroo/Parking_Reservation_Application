@@ -6,14 +6,14 @@ import { StyleSheet, Text, View, Image } from 'react-native';
 export default class Logo extends React.Component {
 	render(){
 		return(
-			<View style = {styles.container}>
+		<View style = {styles.container}>
 
-				<Image  style  = {styles.image}
-          			source = {require('../images/Parking_Reservation_Logo.png')}/>
+		<Image  style  = {styles.image}
+			    source = {require('../images/Parking_Reservation_Logo.png')}/>
 
-        <Text style={styles.logoText}>Parking Reservation</Text>	
+        <Text style = {styles.logoText}>Parking Reservation</Text>	
 
-  			</View>
+		</View>
 			)
 	}
 }

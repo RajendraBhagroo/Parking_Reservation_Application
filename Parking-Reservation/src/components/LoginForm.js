@@ -1,6 +1,6 @@
 import React from 'react';
 import { Component } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, ToastAndroid } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, ToastAndroid, Vibration } from 'react-native';
 import * as firebase from 'firebase';
 
 
@@ -24,6 +24,9 @@ export default class LoginForm extends React.Component {
     email = email.trim().toLocaleLowerCase();
     password = password.trim();
 
+    /* Vibrates Login Button */
+    Vibration.vibrate(20);
+
     if((email != '') && (password != '')){
     firebase.auth().signInWithEmailAndPassword(email.trim().toLocaleLowerCase(), password.trim())
             .then(()  => { this.reservationMapView(); })
@@ -45,10 +48,13 @@ export default class LoginForm extends React.Component {
 
   /* Firebase : Authentication -> Anonymous Login */
   onAnonymousLogin() {
+
+    /* Vibrates Continue As Guest Button */
+    Vibration.vibrate(20);
+
     firebase.auth().signInAnonymously()
             .then(()  => { this.reservationMapView(); })
             .catch(() => { this.toast('Oops! Looks Like There Was An Error, Please Try again'); });
-
   }
   
   /* Displays Android Style Notification Bubble */
