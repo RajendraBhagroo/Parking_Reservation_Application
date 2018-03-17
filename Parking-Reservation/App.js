@@ -10,13 +10,16 @@ import Routes from './src/Routes';
 
 export default class App extends React.Component {
 
-  componentWillMount(){
-    const firebaseConfig = {
-      apikey: 'AIzaSyCntfGKhOaiKl8I0OKWVoB55AazqBSkcZo',
-      authDomain: 'parking-reservation-c681e.firebaseapp.com',
-    }
-
-    firebase.initializeApp(firebaseConfig);
+  /* Firebase Integration */
+  componentWillMount() {
+    firebase.initializeApp({
+      apiKey: "AIzaSyCntfGKhOaiKl8I0OKWVoB55AazqBSkcZo",
+      authDomain: "parking-reservation-c681e.firebaseapp.com",
+      databaseURL: "https://parking-reservation-c681e.firebaseio.com",
+      projectId: "parking-reservation-c681e",
+      storageBucket: "parking-reservation-c681e.appspot.com",
+      messagingSenderId: "342940906918"
+    });
   }
 
   render() {

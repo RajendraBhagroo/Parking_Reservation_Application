@@ -2,6 +2,7 @@ import React from 'react';
 import { Component } from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 
+
 export default class Logo extends React.Component {
 	render(){
 		return(

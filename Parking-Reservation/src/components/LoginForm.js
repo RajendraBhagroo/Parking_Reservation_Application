@@ -1,16 +1,36 @@
 import React from 'react';
 import { Component } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, ToastAndroid } from 'react-native';
+import * as firebase from 'firebase';
+
 
 /* Allows For Routing */
 import { Actions } from 'react-native-router-flux';
 
-export default class LoginForm extends React.Component {
 
+export default class LoginForm extends React.Component {
+  
+  state = { email: '', password: '' };
+  
   /* Redirects To ReservationMap View */
-	reservationMap() {
+	reservationMapView() {
 		Actions.reservationMap();
-	}
+  }
+
+  /* Firebase : Authentication -> Retrieve User */
+  onLoginPress() {
+    let { email, password } = this.state;
+
+    firebase.auth().signInWithEmailAndPassword(email, password)
+            .then(()  => { this.reservationMapView(); })
+            .catch(() => { console.log("Error"); })
+  }
+
+  /* Firebase : Anonymous Login */
+  onAnonymousLogin() {
+
+  } 
+
 
 	render(){
 		return(
@@ -22,23 +42,27 @@ export default class LoginForm extends React.Component {
               placeholderTextColor   = "#ffffff"
               selectionColor         = "#fff"
               keyboardType           = "email-address"
-              blurOnSubmit           = { false }
+              blurOnSubmit           = {false}
+              autoCorrect            = {false}
               onSubmitEditing        = {()=> this.password.focus()}
+              onChangeText           = {(email) => this.setState({ email })}
               />
 
           <TextInput style = {styles.inputBox} 
               underlineColorAndroid  = 'rgba(0,0,0,0)' 
               placeholder            = "Password"
               secureTextEntry        = {true}
+              autoCorrect            = {false}
               placeholderTextColor   = "#ffffff"
               ref                    = {(input) => this.password = input}
+              onChangeText           = {(password) => this.setState({ password })}
               />
 
-          <TouchableOpacity style = {styles.loginButton} onPress = {this.reservationMap}>
+          <TouchableOpacity style = {styles.loginButton} onPress = {() => this.onLoginPress()}>
             <Text style = {styles.loginButtonText}>{this.props.type}</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style = {styles.guestButton} onPress = {this.reservationMap}>
+          <TouchableOpacity style = {styles.guestButton} onPress = {() => this.onAnonymousLogin()}>
 					  <Text style = {styles.guestButtonText}>Continue As Guest</Text>
 					</TouchableOpacity>
 

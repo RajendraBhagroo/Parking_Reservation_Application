@@ -9,6 +9,7 @@ import SignupForm from '../components/SignupForm';
 /* Allows For Routing */
 import { Actions } from 'react-native-router-flux';
 
+
 export default class Signup extends React.Component {
 
   /* Redirects To Login View */
@@ -16,6 +17,7 @@ export default class Signup extends React.Component {
     Actions.login();
   }
 
+  
 	render() {
 		return (
 			<View style = {styles.container}>

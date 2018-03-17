@@ -1,11 +1,24 @@
 import React from 'react';
 import { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, ToastAndroid } from 'react-native';
+import * as firebase from 'firebase';
+
 
 /* Allows For Routing */
 import { Actions } from 'react-native-router-flux';
 
+
 export default class SignupForm extends React.Component {
+
+  state = { email: '', password: '' };
+  
+  /* Contructor & focusNextField Used For TextInput Transitions */
+  constructor(props) {
+    super(props);
+
+    this.focusNextField = this.focusNextField.bind(this);
+    this.inputs = {};
+  }
 
   /* Redirects To Login View */
   loginView() {
@@ -19,6 +32,16 @@ export default class SignupForm extends React.Component {
                  );
   }
 
+  /* Firebase : Authentication -> Create User */
+  onSignupPress() {
+    let { email, password } = this.state;
+
+    firebase.auth().createUserAndRetrieveDataWithEmailAndPassword(email, password)
+            .then(() => { this.loginView(); })
+            .catch(() => { console.log("Error"); })
+  }
+
+
   /*
   SignupSuccessToast() {
     ToastAndroid.showWithGravityAndOffset(
@@ -31,18 +54,25 @@ export default class SignupForm extends React.Component {
   }
   */
 
-  /* Contructor & focusNextField Used For TextInput Transitions */
-  constructor(props) {
-    super(props);
-
-    this.focusNextField = this.focusNextField.bind(this);
-    this.inputs = {};
+    /*
+  SignupFailureToast() {
+    ToastAndroid.showWithGravityAndOffset(
+      'Something Went Wrong! Please Try Again',
+      ToastAndroid.SHORT,
+      ToastAndroid.BOTTOM,
+      25,
+      300
+    );
   }
+  */
 
+
+  /* Helper Function To Cycle Through Input Fields */
   focusNextField(id) {
     this.inputs[id].focus();
   }
 
+  
 	render(){
 		return(
 			<View style = {styles.container}>
@@ -52,8 +82,10 @@ export default class SignupForm extends React.Component {
               placeholder            = "Email"
               placeholderTextColor   = "#ffffff"
               selectionColor         = "#fff"
-              blurOnSubmit           = { false }
+              blurOnSubmit           = {false}
+              autoCorrect            = {false}
               keyboardType           = "email-address"
+              onChangeText           = {(email) => this.setState({ email })}
               onSubmitEditing        = {() => {this.focusNextField("Password");}}
               />
 
@@ -61,7 +93,8 @@ export default class SignupForm extends React.Component {
               underlineColorAndroid  = 'rgba(0,0,0,0)' 
               placeholder            = "Password"
               secureTextEntry        = {true}
-              blurOnSubmit           = { false }
+              blurOnSubmit           = {false}
+              autoCorrect            = {false}
               placeholderTextColor   = "#ffffff"
               ref                    = {(input) => {this.inputs['Password'] = input;}}
               onSubmitEditing        = {() => {this.focusNextField("Verify Password");}}
@@ -71,12 +104,14 @@ export default class SignupForm extends React.Component {
               underlineColorAndroid  = 'rgba(0,0,0,0)' 
               placeholder            = "Verify Password"
               secureTextEntry        = {true}
+              autoCorrect            = {false}
               placeholderTextColor   = "#ffffff"
               ref                    = {(input) => {this.inputs['Verify Password'] = input;}}
+              onChangeText           = {(password) => this.setState({ password })}
               onSubmitEditing        = {(input) => {this.password = input}}
               />
 
-           <TouchableOpacity style = {styles.button} onPress = {this.loginView}>
+           <TouchableOpacity style = {styles.button} onPress = {() => this.onSignupPress()}>
              <Text style = {styles.buttonText}>{this.props.type}</Text>
            </TouchableOpacity>
 
