@@ -10,66 +10,70 @@ import { Actions } from 'react-native-router-flux';
 
 export default class SignupForm extends React.Component {
 
-  state = { email: '', password: '' };
+  state = { email: '', password: '', verifyPassword: '' };
   
   /* Contructor & focusNextField Used For TextInput Transitions */
   constructor(props) {
     super(props);
-
     this.focusNextField = this.focusNextField.bind(this);
     this.inputs = {};
+  }
+
+  /* Helper Function To Cycle Through Input Fields */
+  focusNextField(id) {
+    this.inputs[id].focus();
   }
 
   /* Redirects To Login View */
   loginView() {
     Actions.login();
-    ToastAndroid.showWithGravityAndOffset(
-                 'Successfully Created Account!',
-                 ToastAndroid.SHORT,
-                 ToastAndroid.BOTTOM,
-                 25,
-                 300
-                 );
   }
 
   /* Firebase : Authentication -> Create User */
   onSignupPress() {
-    let { email, password } = this.state;
+    let { email, password, verifyPassword } = this.state;
 
+    email = email.trim().toLocaleLowerCase();
+    password = password.trim();
+    verifyPassword = verifyPassword.trim();
+
+    if((email != '') && (password != '') && (password == verifyPassword) && (password.length >= 6)){ 
     firebase.auth().createUserAndRetrieveDataWithEmailAndPassword(email, password)
-            .then(() => { this.loginView(); })
-            .catch(() => { console.log("Error"); })
+            .then(()  => { this.toast('Successfully Created Account'); this.loginView(); })
+            .catch(() => { this.toast('We Ran Into A Problem Creating Your Account, Please Try Again'); })
+    } 
+    else if((email == '') && (password == '') && (verifyPassword == '')){
+      this.toast('Email, Password, And Verify Password Fields MUST Be Filled In');
+    }
+    else if((email == '')){
+      this.toast('Please Enter Email');
+    }
+    else if((password == '')){
+      this.toast('Please Enter Password');
+    }
+    else if((verifyPassword == '')){
+      this.toast('Please Verify Password');
+    }
+    else if(password != verifyPassword){
+      this.toast('Passwords Do Not Match');
+    }
+    else if(password.length < 6){
+      this.toast('Password Must Be ATLEAST 6 Characters Long');
+    }
+    else{
+      this.toast('Oops! Looks Like There Was An Error, Please Try Again')
+    }
   }
 
-
-  /*
-  SignupSuccessToast() {
+  /* Displays Android Style Notification Bubble */
+  toast(message) {
     ToastAndroid.showWithGravityAndOffset(
-      'Successfully Created Account!',
-      ToastAndroid.SHORT,
-      ToastAndroid.BOTTOM,
-      25,
-      300
+                message,
+                ToastAndroid.SHORT,
+                ToastAndroid.BOTTOM,
+                25,
+                200
     );
-  }
-  */
-
-    /*
-  SignupFailureToast() {
-    ToastAndroid.showWithGravityAndOffset(
-      'Something Went Wrong! Please Try Again',
-      ToastAndroid.SHORT,
-      ToastAndroid.BOTTOM,
-      25,
-      300
-    );
-  }
-  */
-
-
-  /* Helper Function To Cycle Through Input Fields */
-  focusNextField(id) {
-    this.inputs[id].focus();
   }
 
   
@@ -97,6 +101,7 @@ export default class SignupForm extends React.Component {
               autoCorrect            = {false}
               placeholderTextColor   = "#ffffff"
               ref                    = {(input) => {this.inputs['Password'] = input;}}
+              onChangeText           = {(password) => this.setState({ password })}
               onSubmitEditing        = {() => {this.focusNextField("Verify Password");}}
               />
 
@@ -107,7 +112,7 @@ export default class SignupForm extends React.Component {
               autoCorrect            = {false}
               placeholderTextColor   = "#ffffff"
               ref                    = {(input) => {this.inputs['Verify Password'] = input;}}
-              onChangeText           = {(password) => this.setState({ password })}
+              onChangeText           = {(verifyPassword) => this.setState({ verifyPassword })}
               onSubmitEditing        = {(input) => {this.password = input}}
               />
 

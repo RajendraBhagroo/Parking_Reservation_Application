@@ -17,19 +17,50 @@ export default class LoginForm extends React.Component {
 		Actions.reservationMap();
   }
 
-  /* Firebase : Authentication -> Retrieve User */
+  /* Firebase : Authentication -> Email & Password Login */
   onLoginPress() {
     let { email, password } = this.state;
 
-    firebase.auth().signInWithEmailAndPassword(email, password)
+    email = email.trim().toLocaleLowerCase();
+    password = password.trim();
+
+    if((email != '') && (password != '')){
+    firebase.auth().signInWithEmailAndPassword(email.trim().toLocaleLowerCase(), password.trim())
             .then(()  => { this.reservationMapView(); })
-            .catch(() => { console.log("Error"); })
+            .catch(() => { this.toast('Incorrect Email Or Password Combination '); });
+    }
+    else if((email == '') && (password == '')){
+      this.toast('Email And Password Fields MUST Be Filled In');
+    }
+    else if(email == ''){
+      this.toast('Please Enter Email');
+    }
+    else if(password == ''){
+      this.toast('Please Enter Password');
+    }
+    else{
+      this.toast('Oops! Looks Like There Was An Error, Please Try Again')
+    }
   }
 
-  /* Firebase : Anonymous Login */
+  /* Firebase : Authentication -> Anonymous Login */
   onAnonymousLogin() {
+    firebase.auth().signInAnonymously()
+            .then(()  => { this.reservationMapView(); })
+            .catch(() => { this.toast('Oops! Looks Like There Was An Error, Please Try again'); });
 
-  } 
+  }
+  
+  /* Displays Android Style Notification Bubble */
+  toast(message) {
+    ToastAndroid.showWithGravityAndOffset(
+                message,
+                ToastAndroid.SHORT,
+                ToastAndroid.BOTTOM,
+                25,
+                250
+    );
+  }
 
 
 	render(){
