@@ -2,6 +2,8 @@ import React from 'react';
 import { Component } from 'react';
 import { StyleSheet, Text, View, StatusBar, TouchableOpacity } from 'react-native';
 
+/* Import Custom Components */
+import OverviewMap from '../components/OverviewMap';
 
 /* Allows For Routing */
 import { Actions } from 'react-native-router-flux';
@@ -15,11 +17,11 @@ export default class ReservationMap extends React.Component {
 			<View style = {styles.container}>
 
 				<StatusBar
-                   backgroundColor="#505254"
-                   barStyle="light-content"
-                />
+            backgroundColor="#505254"
+            barStyle="light-content"
+        />
 
-            <Text style = {styles.text}>Hello From ReservationMap !</Text>
+        <OverviewMap />
 				
 			</View>	
 			)

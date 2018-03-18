@@ -94,7 +94,7 @@ export default class SignupForm extends React.Component {
               keyboardType           = "email-address"
               onChangeText           = {(email) => this.setState({ email })}
               onSubmitEditing        = {() => {this.focusNextField("Password");}}
-              />
+          />
 
           <TextInput style = {styles.inputBox} 
               underlineColorAndroid  = 'rgba(0,0,0,0)' 
@@ -106,7 +106,7 @@ export default class SignupForm extends React.Component {
               ref                    = {(input) => {this.inputs['Password'] = input;}}
               onChangeText           = {(password) => this.setState({ password })}
               onSubmitEditing        = {() => {this.focusNextField("Verify Password");}}
-              />
+          />
 
           <TextInput style = {styles.inputBox} 
               underlineColorAndroid  = 'rgba(0,0,0,0)' 
@@ -117,7 +117,7 @@ export default class SignupForm extends React.Component {
               ref                    = {(input) => {this.inputs['Verify Password'] = input;}}
               onChangeText           = {(verifyPassword) => this.setState({ verifyPassword })}
               onSubmitEditing        = {(input) => {this.password = input}}
-              />
+          />
 
            <TouchableOpacity style = {styles.button} onPress = {() => this.onSignupPress()}>
              <Text style = {styles.buttonText}>{this.props.type}</Text>

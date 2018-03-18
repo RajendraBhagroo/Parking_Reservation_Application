@@ -83,7 +83,7 @@ export default class LoginForm extends React.Component {
               autoCorrect            = {false}
               onSubmitEditing        = {()=> this.password.focus()}
               onChangeText           = {(email) => this.setState({ email })}
-              />
+          />
 
           <TextInput style = {styles.inputBox} 
               underlineColorAndroid  = 'rgba(0,0,0,0)' 
@@ -93,7 +93,7 @@ export default class LoginForm extends React.Component {
               placeholderTextColor   = "#ffffff"
               ref                    = {(input) => this.password = input}
               onChangeText           = {(password) => this.setState({ password })}
-              />
+          />
 
           <TouchableOpacity style = {styles.loginButton} onPress = {() => this.onLoginPress()}>
             <Text style = {styles.loginButtonText}>{this.props.type}</Text>
