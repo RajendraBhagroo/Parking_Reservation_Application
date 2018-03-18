@@ -5,17 +5,9 @@ import { StyleSheet, Text, View, StatusBar, TouchableOpacity } from 'react-nativ
 /* Import Custom Components */
 import OverviewMap from '../components/OverviewMap';
 
-/* Allows For Routing */
-import { Actions } from 'react-native-router-flux';
-
 
 export default class ReservationMap extends React.Component {
-
-  ReservationLocationView(){
-    Actions.reservationLocation();
-  }
   
-
 	render() {
 		return (
 			<View style = {styles.container}>
@@ -29,9 +21,9 @@ export default class ReservationMap extends React.Component {
           <OverviewMap />
 			  </View>
 
-        <TouchableOpacity style = {styles.prompt} onPress = {() => this.ReservationLocationView()}>
+        <View style = {styles.prompt}>
             <Text style = {styles.text}>Choose A Parking Location</Text>
-        </TouchableOpacity>	
+        </View>	
         
 			</View>	
 			)
