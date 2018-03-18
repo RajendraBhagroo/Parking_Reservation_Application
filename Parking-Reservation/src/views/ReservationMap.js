@@ -20,9 +20,15 @@ export default class ReservationMap extends React.Component {
             backgroundColor="#505254"
             barStyle="light-content"
         />
+      
+        <View style = {styles.map}>
+          <OverviewMap />
+			  </View>
 
-        <OverviewMap />
-				
+        <View style = {styles.prompt}>
+          <Text style = {styles.text}>Choose A Parking Location</Text>
+        </View>	
+        
 			</View>	
 			)
 	}
@@ -36,9 +42,21 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
-    
+
+  map: {
+    flex: 1,
+    height: '50%',
+    width:  '100%',
+    marginBottom: 50
+  },
+
   text: {
-      color: '#ffff'
+    color: '#ffff'
+  },
+
+  prompt: {
+    marginLeft: 10,
+    flexDirection: 'row'
   }
 
 });
