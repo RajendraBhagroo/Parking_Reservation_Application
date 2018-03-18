@@ -11,7 +11,11 @@ import { Actions } from 'react-native-router-flux';
 
 export default class ReservationMap extends React.Component {
 
+  ReservationLocationView(){
+    Actions.reservationLocation();
+  }
   
+
 	render() {
 		return (
 			<View style = {styles.container}>
@@ -25,9 +29,9 @@ export default class ReservationMap extends React.Component {
           <OverviewMap />
 			  </View>
 
-        <View style = {styles.prompt}>
-          <Text style = {styles.text}>Choose A Parking Location</Text>
-        </View>	
+        <TouchableOpacity style = {styles.prompt} onPress = {() => this.ReservationLocationView()}>
+            <Text style = {styles.text}>Choose A Parking Location</Text>
+        </TouchableOpacity>	
         
 			</View>	
 			)

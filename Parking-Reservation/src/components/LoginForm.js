@@ -3,7 +3,6 @@ import { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, ToastAndroid, Vibration } from 'react-native';
 import * as firebase from 'firebase';
 
-
 /* Allows For Routing */
 import { Actions } from 'react-native-router-flux';
 
