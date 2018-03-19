@@ -13,17 +13,17 @@ export default class ReservationMap extends React.Component {
 			<View style = {styles.container}>
 
 				<StatusBar
-            backgroundColor="#505254"
-            barStyle="light-content"
+          backgroundColor="#505254"
+          barStyle="light-content"
         />
       
+        <View style = {styles.prompt}>
+          <Text style = {styles.text}>Choose A Parking Location</Text>
+        </View>	
+
         <View style = {styles.map}>
           <OverviewMap />
 			  </View>
-
-        <View style = {styles.prompt}>
-            <Text style = {styles.text}>Choose A Parking Location</Text>
-        </View>	
         
 			</View>	
 			)
@@ -43,7 +43,6 @@ const styles = StyleSheet.create({
     flex: 1,
     height: '50%',
     width:  '100%',
-    marginBottom: 50
   },
 
   text: {
@@ -51,7 +50,7 @@ const styles = StyleSheet.create({
   },
 
   prompt: {
-    marginLeft: 10,
+    alignItems: 'center',
     flexDirection: 'row'
   }
 
