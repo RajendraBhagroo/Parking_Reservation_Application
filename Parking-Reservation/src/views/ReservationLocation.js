@@ -19,7 +19,7 @@ export default class ReservationLocation extends React.Component {
   );
   */
 
-
+//readers all the times as touchable opacities
  renderGridItem = (item) => 
  (
    <View style={styles.container}>
@@ -31,6 +31,7 @@ export default class ReservationLocation extends React.Component {
  );
 
   render() {
+    //this part is what creates the spots
     const items = [];
     for (let x = 1; x <= 30; x++) {
       items.push({
@@ -78,14 +79,17 @@ const styles = StyleSheet.create({
   },
   flex: {
     flex: 2,
+    
   },
   item: {
     height: 80,
+    width: 40,
     backgroundColor: '#28a745',
-    padding: 10,
+    padding: 5,
   },
   name: {
     fontSize: 12,
+    fontWeight: 'bold',
     textAlign: 'center',
     color: '#000000'
   },
