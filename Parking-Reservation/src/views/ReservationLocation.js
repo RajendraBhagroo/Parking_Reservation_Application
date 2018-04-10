@@ -7,18 +7,37 @@ import { Actions } from 'react-native-router-flux';
 import GridLayout from 'react-native-layout-grid';
 import PopupDialog from 'react-native-popup-dialog';
 export default class ReservationLocation extends React.Component {
-
-
+  state = {
+    selectedTime: 0,
+    selectedSpot:""
+  }
+  updateTime(time)
+  {
+    this.setState({selectedTime:time});
+  }
+  updateSelectedSpot(spot)
+  {
+    this.setState({selectedSpot:spot});
+  }
+  selectTime(spot)
+  {
+    this.setState({spot})
+    this.popupDialog.show();
+  }
 //readers all the times as touchable opacities
  renderGridItem = (item) => 
  (
    <View style={styles.container}>
      <View style={styles.flex} />
-      <TouchableOpacity style = {styles.item} onPress = {()=>this.toast("You pressed"+item.name)}>
+      <TouchableOpacity style = {styles.item} onPress = {()=>this.selectTime(item.name)}>
 					  <Text style = {styles.name}>{item.name}</Text>
       </TouchableOpacity>
    </View>
  );
+ selectTime=(spot)=>
+ {
+
+ }
 
   render() {
     //this part is what creates the spots
@@ -47,7 +66,7 @@ export default class ReservationLocation extends React.Component {
 
           <PopupDialog ref={(popupDialog) => { this.popupDialog = popupDialog; }}>
             <View>
-            <Text>Hello</Text>
+            <Text>{this.state.selectedSpot}</Text>
             <TouchableOpacity style = {styles.loginButton} onPress = {() => this.popupDialog.dismiss()}>
             <Text style = {styles.loginButtonText}>Close</Text>
             </TouchableOpacity>
