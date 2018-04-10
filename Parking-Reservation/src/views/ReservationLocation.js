@@ -5,19 +5,9 @@ import { StyleSheet, Text, View, StatusBar, TouchableOpacity, ToastAndroid } fro
 /* Allows For Routing */
 import { Actions } from 'react-native-router-flux';
 import GridLayout from 'react-native-layout-grid';
-
+import PopupDialog from 'react-native-popup-dialog';
 export default class ReservationLocation extends React.Component {
 
-  /*renderGridItem = (item) => 
-  (
-    <View style={styles.item}>
-      <View style={styles.flex} />
-      <Text style={styles.name}>
-        {item.name}
-      </Text>
-    </View>
-  );
-  */
 
 //readers all the times as touchable opacities
  renderGridItem = (item) => 
@@ -51,7 +41,20 @@ export default class ReservationLocation extends React.Component {
             itemsPerRow={10}
             renderItem={this.renderGridItem}
           />
+          <TouchableOpacity style = {styles.loginButton} onPress = {() => this.popupDialog.show()}>
+            <Text style = {styles.loginButtonText}>Test</Text>
+          </TouchableOpacity>
+
+          <PopupDialog ref={(popupDialog) => { this.popupDialog = popupDialog; }}>
+            <View>
+            <Text>Hello</Text>
+            <TouchableOpacity style = {styles.loginButton} onPress = {() => this.popupDialog.dismiss()}>
+            <Text style = {styles.loginButtonText}>Close</Text>
+            </TouchableOpacity>
+            </View>
+        </PopupDialog>
         </View>
+        
       </View>
     );
   }
@@ -92,5 +95,19 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     color: '#000000'
+  },
+  loginButton: {
+    width: 300,
+    backgroundColor: '#28a745',
+    borderRadius: 25,
+    marginVertical: 10,
+    paddingVertical: 13
+  },
+
+  loginButtonText: {
+    fontSize: 16,
+    fontWeight: '500',
+    color: '#ffffff',
+    textAlign: 'center'
   },
 });
