@@ -12,24 +12,38 @@ export default class ReservationLocation extends React.Component {
   * selectedSpot = Spot to add
   * values in cart are stored as spot*startTime*endTime
   */
+ 
   state = {
     selectedTime1: "12:00AM",
     selectedTime2:"12:00AM",
     selectedSpot:"Default Value",
-    cart:"cartTest" 
+    cartArray:[]
+  }
+  paymentView() {
+    Actions.payment();
+
+		/* Vibrates Small Sign in Button */
+		Vibration.vibrate(20);
   }
 
   //displays the popup dialog and sets the current selected state
   popup(spot)
-  {
+  { if(this.state.cartArray.length<3)
+    {
     this.setState({selectedSpot:spot})
     this.popupDialog.show();
+    }
+    else
+    {
+      this.toast("You already have max values");
+    }
   }
   //adds a spot to the cart
   addSpot()
   {
-    this.setState({cart:this.state.cart+" "+this.state.selectedSpot+"*"+this.state.selectedTime1+"*"+this.state.selectedTime2})
+    this.state.cartArray.push(this.state.selectedSpot+"*"+this.state.selectedTime1+"*"+this.state.selectedTime2)
     this.popupDialog.dismiss();
+
   }
  renderGridItem = (item) => 
  (
@@ -44,6 +58,7 @@ export default class ReservationLocation extends React.Component {
   render() {
     //this part is what creates the spots
     const items = [];
+    let cartArray=[3];
     for (let x = 1; x <= 30; x++) {
       items.push({
         //name: `Grid ${x}`
@@ -63,13 +78,13 @@ export default class ReservationLocation extends React.Component {
           <GridLayout items={items} itemsPerRow={10} renderItem={this.renderGridItem}/>
 
          <Text>{this.cart}</Text>
-          <TouchableOpacity style = {styles.loginButton} onPress = {() => this.popupDialog.show()}>
-            <Text style = {styles.loginButtonText}>Test</Text>
+          <TouchableOpacity style = {styles.loginButton} onPress = {() => this.paymentView()}>
+            <Text style = {styles.loginButtonText}>Next</Text>
           </TouchableOpacity>
       
           <PopupDialog ref={(popupDialog) => { this.popupDialog = popupDialog; }}>
             <View>
-            <Text>{this.state.cart}</Text>
+            <Text>{this.state.cartArray.length}</Text>
             
               <Picker selectedValue={this.state.selectedTime1} onValueChange={(itemValue, itemIndex) => this.setState({selectedTime1: itemValue})}>
               <Picker.Item label="12:00AM" value="0" />

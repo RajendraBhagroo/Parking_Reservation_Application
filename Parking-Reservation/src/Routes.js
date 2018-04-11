@@ -7,7 +7,7 @@ import Login  from './views/Login';
 import Signup from './views/Signup';
 import ReservationMap from './views/ReservationMap';
 import ReservationLocation from './views/ReservationLocation';
-
+import Payment from './views/Payment';
 
 export default class Routes extends React.Component {
 	render() {
@@ -18,6 +18,7 @@ export default class Routes extends React.Component {
 			      <Scene key="signup"              component = {Signup}              title = "Register"/>
 				  <Scene key="reservationMap"      component = {ReservationMap}      title = "ReservationMap"/>
 				  <Scene key="reservationLocation" component = {ReservationLocation} title = "ReservationLocation"/>
+				  <Scene key="payment" 			   component = {Payment} 			 title = "Payment"/>
 			    </Stack>
 			 </Router>
 			)
