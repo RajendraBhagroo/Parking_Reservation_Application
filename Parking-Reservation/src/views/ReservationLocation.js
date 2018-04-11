@@ -8,25 +8,19 @@ import GridLayout from 'react-native-layout-grid';
 import PopupDialog from 'react-native-popup-dialog';
 export default class ReservationLocation extends React.Component {
   state = {
-    selectedTime1: 0,
-    selectedTime2:0,
-    selectedSpot:"Default Value",
-    cart:"cartTest"
+    selectedTime1: "12:00AM",//The beginning time
+    selectedTime2:"12:00AM",//The ending time
+    selectedSpot:"Default Value",//The selected spot
+    cart:"cartTest" //the fomat of spots is stored as spot*BeginningTime*EndingTime
   }
 
-  updateTime(time)
-  {
-    this.setState({selectedTime:time});
-  }
-  updateSelectedSpot(spot)
-  {
-    this.setState({selectedSpot:spot});
-  }
+  //displays the popup dialog and sets the current selected state
   popup(spot)
   {
     this.setState({selectedSpot:spot})
     this.popupDialog.show();
   }
+  //adds a spot to the cart
   addSpot()
   {
     this.setState({cart:this.state.cart+" "+this.state.selectedSpot+"*"+this.state.selectedTime1+"*"+this.state.selectedTime2})
@@ -60,20 +54,18 @@ export default class ReservationLocation extends React.Component {
           NYIT
         </Text>
         <View style={styles.flex}>
-          <GridLayout
-            items={items}
-            itemsPerRow={10}
-            renderItem={this.renderGridItem}
-          />
+          {/*This portion is where the grid is created*/};
+          <GridLayout items={items} itemsPerRow={10} renderItem={this.renderGridItem}/>
+          {/*Debugger text remove later when delivering product*/};
          <Text>{this.cart}</Text>
           <TouchableOpacity style = {styles.loginButton} onPress = {() => this.popupDialog.show()}>
             <Text style = {styles.loginButtonText}>Test</Text>
           </TouchableOpacity>
-
+          {/*this section is the popup selection*/};
           <PopupDialog ref={(popupDialog) => { this.popupDialog = popupDialog; }}>
             <View>
             <Text>{this.state.cart}</Text>
-            
+              {/*this portion selects the first time*/};
               <Picker selectedValue={this.state.selectedTime1} onValueChange={(itemValue, itemIndex) => this.setState({selectedTime1: itemValue})}>
               <Picker.Item label="12:00AM" value="0" />
               <Picker.Item label="12:30AM" value="1" />
@@ -124,7 +116,7 @@ export default class ReservationLocation extends React.Component {
               <Picker.Item label="11:00PM" value="46" />
               <Picker.Item label="11:30PM" value="47" />
               </Picker>
-
+              {/*this portion selects the second time*/};
               <Picker selectedValue={this.state.selectedTime2} onValueChange={(itemValue, itemIndex) => this.setState({selectedTime2: itemValue})}>
               <Picker.Item label="12:00AM" value="0" />
               <Picker.Item label="12:30AM" value="1" />
@@ -175,16 +167,18 @@ export default class ReservationLocation extends React.Component {
               <Picker.Item label="11:00PM" value="46" />
               <Picker.Item label="11:30PM" value="47" />
               </Picker>
-
+            {/*upon selected the time range this button adds the spot and time range to the cart*/};
             <TouchableOpacity style = {styles.loginButton} onPress = {() => this.addSpot()}>
             <Text style = {styles.loginButtonText}>Add</Text>
             </TouchableOpacity>
 
+            {/*closes the popup time selection*/};
             <TouchableOpacity style = {styles.loginButton} onPress = {() => this.popupDialog.dismiss()}>
             <Text style = {styles.loginButtonText}>Close</Text>
             </TouchableOpacity>
             </View>
         </PopupDialog>
+
         </View>
         
       </View>
