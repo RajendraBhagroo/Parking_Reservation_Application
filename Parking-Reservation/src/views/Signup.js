@@ -35,11 +35,11 @@ export default class Signup extends React.Component {
         <SignupForm type = "Sign Up"/>
 				
         <View style = {styles.signupTextCont}>
-					<Text style = {styles.signupText}>Already have an account? </Text>
+					  <Text style = {styles.signupText}>Already have an account? </Text>
 					
-          <TouchableOpacity onPress = {this.loginView}>
+            <TouchableOpacity onPress = {this.loginView}>
             <Text style = {styles.signupButton}>Sign in</Text>
-          </TouchableOpacity>
+            </TouchableOpacity>
 				</View>
 
 			</View>	

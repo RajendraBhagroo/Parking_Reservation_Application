@@ -12,8 +12,8 @@ export default class LoginForm extends React.Component {
   state = { email: '', password: '' };
   
   /* Redirects To ReservationMap View */
-	reservationMapView() {
-		Actions.reservationMap();
+	MainMenuView() {
+		Actions.mainMenu();
   }
 
   /* Firebase : Authentication -> Email & Password Login */
@@ -28,7 +28,7 @@ export default class LoginForm extends React.Component {
 
     if((email != '') && (password != '')){
     firebase.auth().signInWithEmailAndPassword(email.trim().toLocaleLowerCase(), password.trim())
-            .then(()  => { this.reservationMapView(); })
+            .then(()  => { this.MainMenuView(); })
             .catch(() => { this.toast('Incorrect Email Or Password Combination '); });
     }
     else if((email == '') && (password == '')){
