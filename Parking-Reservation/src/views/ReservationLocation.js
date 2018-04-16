@@ -19,13 +19,20 @@ export default class ReservationLocation extends React.Component {
     selectedSpot:"Default Value",
     cartArray:[]
   }
-  paymentView() {
-    Actions.payment();
+  paymentView() 
+  {
+    if(this.state.cartArray.length==0)
+    {
+      this.toast("You must select a spot first")
+    }
+    else{ Actions.payment();}
 
-		/* Vibrates Small Sign in Button */
-		Vibration.vibrate(20);
   }
+  popupReview()
+  {
 
+    this.popupDialogReview.show();
+  }
   //displays the popup dialog and sets the current selected state
   popup(spot)
   { if(this.state.cartArray.length<3)
@@ -41,8 +48,9 @@ export default class ReservationLocation extends React.Component {
   //adds a spot to the cart
   addSpot()
   {
-    this.state.cartArray.push(this.state.selectedSpot+"*"+this.state.selectedTime1+"*"+this.state.selectedTime2)
+    this.state.cartArray.push({spotName:this.state.selectedSpot,startTime:this.state.selectedTime1,endTime:this.state.selecteTime2});
     this.popupDialog.dismiss();
+    this.toast(String(this.state.cartArray.length));
 
   }
  renderGridItem = (item) => 
@@ -54,12 +62,22 @@ export default class ReservationLocation extends React.Component {
       </TouchableOpacity>
    </View>
  );
+ renderSelectedspots=(item)=>
+ (
+    <View style={styles.container}>
+      <View style={styles.flex}/>
+      <TouchableOpacity style ={styles.item} onPress={()=>this.toast("Pressed an item")}>
+      <Text>{this.state.cartArray.length}</Text>
+      </TouchableOpacity>
+    </View>
+ );
 
   render() {
     //this part is what creates the spots
     const items = [];
-    let cartArray=[3];
-    for (let x = 1; x <= 30; x++) {
+
+    for (let x = 1; x <= 30; x++) 
+    {
       items.push({
         //name: `Grid ${x}`
         name:`${x}`,
@@ -81,7 +99,19 @@ export default class ReservationLocation extends React.Component {
           <TouchableOpacity style = {styles.loginButton} onPress = {() => this.paymentView()}>
             <Text style = {styles.loginButtonText}>Next</Text>
           </TouchableOpacity>
-      
+
+          <TouchableOpacity style = {styles.loginButton} onPress = {() => this.popupReview()}>
+            <Text style = {styles.loginButtonText}>Review</Text>
+          </TouchableOpacity>
+
+          <PopupDialog ref={(popupDialogReview) => { this.popupDialogReview= popupDialogReview; }}>
+          <View>
+          <GridLayout items={this.state.cartArray} itemsPerRow={1} renderItem={this.renderSelectedspots}/>
+
+            <Text>PopupDialogReview</Text>
+          </View>
+          </PopupDialog>
+
           <PopupDialog ref={(popupDialog) => { this.popupDialog = popupDialog; }}>
             <View>
             <Text>{this.state.cartArray.length}</Text>
@@ -196,9 +226,18 @@ export default class ReservationLocation extends React.Component {
             <TouchableOpacity style = {styles.loginButton} onPress = {() => this.popupDialog.dismiss()}>
             <Text style = {styles.loginButtonText}>Close</Text>
             </TouchableOpacity>
+
             </View>
         </PopupDialog>
+          <PopupDialog ref={(popupDialogReview) => { this.popupDialogReview= popupDialogReview; }}>
+          <View>
+          <Text>{this.state.cartArray.length}</Text>
 
+          <GridLayout items={this.state.cartArray} itemsPerRow={1} renderItem={this.renderSelectedspots}/>
+
+
+          </View>
+          </PopupDialog>
         </View>
         
       </View>
