@@ -2,6 +2,9 @@ import React from 'react';
 import { Component } from 'react';
 import { StyleSheet, Text, View, Image, StatusBar, TouchableOpacity, Vibration } from 'react-native';
 
+/* Import Custom Components */
+import Logo from '../components/Logo';
+
 /* Allows For Routing */
 import { Actions } from 'react-native-router-flux';
 
