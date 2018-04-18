@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/raj/AndroidStudioProjects/Parking_Reservation_Application/Parking-Reservation/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-eu/values-eu.xml",
+            "outputFile": "C:\\Users\\jacob\\Desktop\\Parking_Reservation_Application\\Parking-Reservation\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-eu\\values-eu.xml",
             "map": [
                 {
-                    "source": "/home/raj/.gradle/caches/transforms-1/files-1.1/play-services-base-11.8.0.aar/a639bf2a6ecf668c95fecc53093a36d4/res/values-eu/values.xml",
+                    "source": "C:\\Users\\jacob\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-11.8.0.aar\\57f35fafcf0be7ba6a1b82cbf04a36c6\\res\\values-eu\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -21,85 +21,7 @@
                     }
                 },
                 {
-                    "source": "/home/raj/.gradle/caches/transforms-1/files-1.1/play-services-basement-11.8.0.aar/c15f9b96d055bb73ee559ebe78b4e793/res/values-eu/values.xml",
-                    "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "283",
-                        "endColumns": "200",
-                        "endOffsets": "483"
-                    },
-                    "to": {
-                        "startLines": "10",
-                        "startColumns": "4",
-                        "startOffsets": "1282",
-                        "endColumns": "200",
-                        "endOffsets": "1478"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "/home/raj/AndroidStudioProjects/Parking_Reservation_Application/Parking-Reservation/android/C:\\Users\\MK\\react_workspace\\Parking_Reservation_Application\\Parking-Reservation\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-eu\\values-eu.xml",
-            "map": [
-                {
-                    "source": "/home/raj/AndroidStudioProjects/Parking_Reservation_Application/Parking-Reservation/android/C:\\Users\\MK\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-11.8.0.aar\\1bf17d6ba7a802b292e350d423c8d20f\\res\\values-eu\\values.xml",
-                    "from": {
-                        "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
-                        "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
-                        "startOffsets": "281,383,591,715,822,1028,1153,1302,1434,1677,1783,1981,2109,2336,2521,2613,2704",
-                        "endColumns": "101,207,123,106,205,124,148,131,242,105,197,127,226,184,91,90,103",
-                        "endOffsets": "382,590,714,821,1027,1152,1301,1433,1676,1782,1980,2108,2335,2520,2612,2703,2807"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,11,12,13,14,15,16,17,18,19",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,211,419,547,658,864,993,1146,1483,1726,1836,2034,2166,2393,2582,2678,2773",
-                        "endColumns": "105,207,127,110,205,128,152,135,242,109,197,131,226,188,95,94,107",
-                        "endOffsets": "206,414,542,653,859,988,1141,1277,1721,1831,2029,2161,2388,2577,2673,2768,2876"
-                    }
-                },
-                {
-                    "source": "/home/raj/AndroidStudioProjects/Parking_Reservation_Application/Parking-Reservation/android/C:\\Users\\MK\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-basement-11.8.0.aar\\c76c497f3aa0f086a4cae01e7c77fc3e\\res\\values-eu\\values.xml",
-                    "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "283",
-                        "endColumns": "200",
-                        "endOffsets": "483"
-                    },
-                    "to": {
-                        "startLines": "10",
-                        "startColumns": "4",
-                        "startOffsets": "1282",
-                        "endColumns": "200",
-                        "endOffsets": "1478"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "/home/raj/AndroidStudioProjects/Parking_Reservation_Application/Parking-Reservation/android/C:\\Users\\jacob\\Desktop\\Parking_Reservation_Application\\Parking-Reservation\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-eu\\values-eu.xml",
-            "map": [
-                {
-                    "source": "/home/raj/AndroidStudioProjects/Parking_Reservation_Application/Parking-Reservation/android/C:\\Users\\jacob\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-11.8.0.aar\\57f35fafcf0be7ba6a1b82cbf04a36c6\\res\\values-eu\\values.xml",
-                    "from": {
-                        "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
-                        "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
-                        "startOffsets": "281,383,591,715,822,1028,1153,1302,1434,1677,1783,1981,2109,2336,2521,2613,2704",
-                        "endColumns": "101,207,123,106,205,124,148,131,242,105,197,127,226,184,91,90,103",
-                        "endOffsets": "382,590,714,821,1027,1152,1301,1433,1676,1782,1980,2108,2335,2520,2612,2703,2807"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,11,12,13,14,15,16,17,18,19",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,211,419,547,658,864,993,1146,1483,1726,1836,2034,2166,2393,2582,2678,2773",
-                        "endColumns": "105,207,127,110,205,128,152,135,242,109,197,131,226,188,95,94,107",
-                        "endOffsets": "206,414,542,653,859,988,1141,1277,1721,1831,2029,2161,2388,2577,2673,2768,2876"
-                    }
-                },
-                {
-                    "source": "/home/raj/AndroidStudioProjects/Parking_Reservation_Application/Parking-Reservation/android/C:\\Users\\jacob\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-basement-11.8.0.aar\\3bdd84568f8aa8718fed9eab6ce08744\\res\\values-eu\\values.xml",
+                    "source": "C:\\Users\\jacob\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-basement-11.8.0.aar\\3bdd84568f8aa8718fed9eab6ce08744\\res\\values-eu\\values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
