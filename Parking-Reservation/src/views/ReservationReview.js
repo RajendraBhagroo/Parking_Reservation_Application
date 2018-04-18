@@ -8,19 +8,17 @@ import { Actions } from 'react-native-router-flux';
 
 export default class ReservationReview extends React.Component {
 
-
-      /* Redirects To ReservationMap View */
-    MainMenuView() {
+    /* Redirects To ReservationMap View */
+    MainMenuView(){
         Actions.mainMenu();
     }
 
-      /* Redirects To Login View */
-    loginView() {
+    /* Redirects To Login View */
+    loginView(){
         Actions.login();
-
-		/* Vibrates Small Sign in Button */
 		Vibration.vibrate(20);
     }
+
 
 	render() {
 		return (
@@ -34,12 +32,10 @@ export default class ReservationReview extends React.Component {
                 <TouchableOpacity  style = {styles.MainMenuButton} onPress = {this.MainMenuView}>
                     <Text style = {styles.MainMenuButtonText}>Main Menu</Text>
                 </TouchableOpacity>
-				
-            
+				            
                 <TouchableOpacity  style = {styles.LogoutButton} onPress = {this.loginView}>
                     <Text style = {styles.LogoutButtonText}>Logout</Text>
                 </TouchableOpacity>
-
 
 			</View>	
 			)

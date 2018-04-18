@@ -22,9 +22,9 @@ export default class Routes extends React.Component {
 				  <Scene key="reservationMap"      component = {ReservationMap}      title = "ReservationMap"/>
 				  <Scene key="reservationLocation" component = {ReservationLocation} title = "ReservationLocation"/>
 				  <Scene key="payment" 			   component = {Payment} 			 title = "Payment"/>
-				  <Scene key="reservationReview" component = {ReservationReview}     title = "ReservationReview"/>
+				  <Scene key="reservationReview"   component = {ReservationReview}   title = "ReservationReview"/>
 			    </Stack>
-			 </Router>
+			</Router>
 			)
 	}
 }
