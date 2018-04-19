@@ -1,10 +1,27 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\jacob\\Desktop\\Parking_Reservation_Application\\Parking-Reservation\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-si\\values-si.xml",
+            "outputFile": "/home/raj/AndroidStudioProjects/Parking_Reservation_Application/Parking-Reservation/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-si/values-si.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\jacob\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-11.8.0.aar\\57f35fafcf0be7ba6a1b82cbf04a36c6\\res\\values-si\\values.xml",
+                    "source": "/home/raj/.gradle/caches/transforms-1/files-1.1/play-services-basement-11.8.0.aar/c15f9b96d055bb73ee559ebe78b4e793/res/values-si/values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "283",
+                        "endColumns": "197",
+                        "endOffsets": "480"
+                    },
+                    "to": {
+                        "startLines": "10",
+                        "startColumns": "4",
+                        "startOffsets": "1242",
+                        "endColumns": "197",
+                        "endOffsets": "1435"
+                    }
+                },
+                {
+                    "source": "/home/raj/.gradle/caches/transforms-1/files-1.1/play-services-base-11.8.0.aar/a639bf2a6ecf668c95fecc53093a36d4/res/values-si/values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -19,9 +36,14 @@
                         "endColumns": "109,185,125,114,200,125,145,126,209,116,186,132,202,190,102,90,108",
                         "endOffsets": "210,396,522,637,838,964,1110,1237,1645,1762,1949,2082,2285,2476,2579,2670,2779"
                     }
-                },
+                }
+            ]
+        },
+        {
+            "outputFile": "/home/raj/AndroidStudioProjects/Parking_Reservation_Application/Parking-Reservation/android/C:\\Users\\jacob\\Desktop\\Parking_Reservation_Application\\Parking-Reservation\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-si\\values-si.xml",
+            "map": [
                 {
-                    "source": "C:\\Users\\jacob\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-basement-11.8.0.aar\\3bdd84568f8aa8718fed9eab6ce08744\\res\\values-si\\values.xml",
+                    "source": "/home/raj/AndroidStudioProjects/Parking_Reservation_Application/Parking-Reservation/android/C:\\Users\\jacob\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-basement-11.8.0.aar\\3bdd84568f8aa8718fed9eab6ce08744\\res\\values-si\\values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -35,6 +57,23 @@
                         "startOffsets": "1242",
                         "endColumns": "197",
                         "endOffsets": "1435"
+                    }
+                },
+                {
+                    "source": "/home/raj/AndroidStudioProjects/Parking_Reservation_Application/Parking-Reservation/android/C:\\Users\\jacob\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-11.8.0.aar\\57f35fafcf0be7ba6a1b82cbf04a36c6\\res\\values-si\\values.xml",
+                    "from": {
+                        "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
+                        "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
+                        "startOffsets": "281,387,573,695,806,1007,1129,1271,1394,1604,1717,1904,2033,2236,2423,2522,2609",
+                        "endColumns": "105,185,121,110,200,121,141,122,209,112,186,128,202,186,98,86,104",
+                        "endOffsets": "386,572,694,805,1006,1128,1270,1393,1603,1716,1903,2032,2235,2422,2521,2608,2713"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,11,12,13,14,15,16,17,18,19",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,215,401,527,642,843,969,1115,1440,1650,1767,1954,2087,2290,2481,2584,2675",
+                        "endColumns": "109,185,125,114,200,125,145,126,209,116,186,132,202,190,102,90,108",
+                        "endOffsets": "210,396,522,637,838,964,1110,1237,1645,1762,1949,2082,2285,2476,2579,2670,2779"
                     }
                 }
             ]

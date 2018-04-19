@@ -33,27 +33,28 @@ export default class MainMenu extends React.Component {
 	render() {
 		return (
 			<View style = {styles.container}>
-
-				<StatusBar
-          backgroundColor="#505254"
-          barStyle="light-content"
-        />
-				
-				<Logo/>
-
-        <TouchableOpacity  style = {styles.ReservationButton} onPress = {this.reservationMapView}>
-            <Text style = {styles.ReservationButtonText}>Make Reservation</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity  style = {styles.ReservationReviewButton} onPress = {this.reservationReviewView}>
-            <Text style = {styles.ReservationReviewButtonText}>Review Reservation</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity  style = {styles.LogoutButton} onPress = {this.loginView}>
-            <Text style = {styles.LogoutButtonText}>Logout</Text>
-        </TouchableOpacity>
-
-			</View>	
+         <View style = {styles.bundle}>
+		    		<StatusBar
+              backgroundColor="#505254"
+              barStyle="light-content"
+            />
+		    		
+		    		<Logo/>
+    
+            <TouchableOpacity  style = {styles.ReservationButton} onPress = {this.reservationMapView}>
+                <Text style = {styles.ReservationButtonText}>Make Reservation</Text>
+            </TouchableOpacity>
+    
+            <TouchableOpacity  style = {styles.ReservationReviewButton} onPress = {this.reservationReviewView}>
+                <Text style = {styles.ReservationReviewButtonText}>Review Reservation</Text>
+            </TouchableOpacity>
+    
+            <TouchableOpacity  style = {styles.LogoutButton} onPress = {this.loginView}>
+                <Text style = {styles.LogoutButtonText}>Logout</Text>
+            </TouchableOpacity>
+    
+		  	  </View>	
+        </View>  
 			)
 	}
 }
@@ -61,10 +62,18 @@ export default class MainMenu extends React.Component {
 const styles = StyleSheet.create({
 
     container: {
-      backgroundColor: '#d2f4f3',
+      backgroundColor: '#292a2b',
       flex: 1,
       alignItems: 'center',
-      justifyContent:'center'
+      justifyContent:'center',
+      width: '100%',
+    },
+
+    bundle: {
+      alignItems: 'center',
+      justifyContent:'center',
+      position: 'absolute',
+      top: '13%'
     },
 
     ReservationButton: {
@@ -101,8 +110,8 @@ const styles = StyleSheet.create({
       width: 300,
       backgroundColor: '#6d7172',
       borderRadius: 10,
-      marginTop: 60,
-      paddingVertical: 17
+      marginVertical: 20,
+      paddingVertical: 16
     },
   
     LogoutButtonText: {

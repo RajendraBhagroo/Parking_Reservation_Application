@@ -1,10 +1,32 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\jacob\\Desktop\\Parking_Reservation_Application\\Parking-Reservation\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-h720dp-v13\\values-h720dp-v13.xml",
+            "outputFile": "/home/raj/AndroidStudioProjects/Parking_Reservation_Application/Parking-Reservation/android/C:\\Users\\jacob\\Desktop\\Parking_Reservation_Application\\Parking-Reservation\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-h720dp-v13\\values-h720dp-v13.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\jacob\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.0.1.aar\\c628da013e0377a9a06f8557448d35e6\\res\\values-h720dp\\values-h720dp.xml",
+                    "source": "/home/raj/AndroidStudioProjects/Parking_Reservation_Application/Parking-Reservation/android/C:\\Users\\jacob\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.0.1.aar\\c628da013e0377a9a06f8557448d35e6\\res\\values-h720dp\\values-h720dp.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "4",
+                        "startOffsets": "283",
+                        "endColumns": "66",
+                        "endOffsets": "345"
+                    },
+                    "to": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "66",
+                        "endOffsets": "117"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "/home/raj/AndroidStudioProjects/Parking_Reservation_Application/Parking-Reservation/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-h720dp-v13/values-h720dp-v13.xml",
+            "map": [
+                {
+                    "source": "/home/raj/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/34e01db5969c8309f9d55f1899ac83f2/res/values-h720dp/values-h720dp.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "4",

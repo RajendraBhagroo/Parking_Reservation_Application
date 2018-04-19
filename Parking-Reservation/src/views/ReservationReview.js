@@ -11,9 +11,11 @@ export default class ReservationReview extends React.Component {
     /* Redirects To ReservationMap View */
     MainMenuView(){
         Actions.mainMenu();
+        Vibration.vibrate(20);
     }
 
     /* Redirects To Login View */
+    /* Change To Logout, Add Logic*/
     loginView(){
         Actions.login();
 		Vibration.vibrate(20);
