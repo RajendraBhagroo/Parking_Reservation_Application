@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import {
-  StyleSheet, View, TextInput, Text,  Alert,  TouchableOpacity,  Image} from 'react-native';
+import { StyleSheet, View, TextInput, Text, Alert, TouchableOpacity, Image } from 'react-native';
+
+/* Import Custom Components */
+import Logo from '../components/Logo';
+
+/* Allows For Routing */
+import { Actions } from 'react-native-router-flux';
+
 export default class Payment extends React.Component {
-/* THINGS NEED TO CHANGE
-  Since my android device does not work, please redirect to other pages if require,
-  Published just make sure it runes, adjust color later.
-  Switch LOGO if require
-*/
-  constructor(props) {
+
+  constructor(props){
     super(props);
     this.state = {
       TextInputName: '',
@@ -17,22 +19,19 @@ export default class Payment extends React.Component {
       CVV: '',
     };
   }
-//******* CANCEL button, redirect to main menu / Parking_Reservation
+
  Cancel = () => {
     Alert.alert('Test');
  };
 
-
-// Pay button reaction
   Payit = () => {
     const { TextInputName } = this.state;
-    const { Email } = this.state;
+    const { Email }         = this.state;
     const { TextInputCard } = this.state;
     const { TextInputDate } = this.state;
-    const { CVV } = this.state;
+    const { CVV }           = this.state;
 
-    if (
-      TextInputName == '' ||Email == '' ||TextInputCard == '' || TextInputDate == '' ||  CVV == '' ) {
+    if (TextInputName == '' || Email == '' || TextInputCard == '' || TextInputDate == '' || CVV == ''){
       Alert.alert('Please Provide All Information');
     } else {
       if (isFinite(this.state.TextInputName) || TextInputName.length < 3) {
@@ -54,25 +53,23 @@ export default class Payment extends React.Component {
       }
     }
   };
-//============================================================================================
+
+
   render() {
     return (
      
-<View style={styles.container}>
+      <View style={styles.container}>
 
-    // ******LOGO image, switch if require
-      <Image
-      style={styles.logo}
-      source={require('/Parking_Reservation_Logo.png')}
-      />
-// input boxes==================================================================================
-        <Text style={styles.letter}> Name</Text>
+        <Logo/>
+
+        <Text style={styles.letter}> Name </Text>
         <TextInput
           placeholder="As it appears on your card"
           placeholderTextColor="rgba(255,255,255,0.5)"
           onChangeText={TextInputName => this.setState({ TextInputName })}
           style={styles.input}
         />
+
         <Text style={styles.letter}> Email </Text>
         <TextInput
           placeholder="Get Notification"
@@ -88,16 +85,14 @@ export default class Payment extends React.Component {
           onChangeText={TextInputCard => this.setState({ TextInputCard })}
           style={styles.input}
         />
-//============================================================================================
 
-//============================================================================================
-//separted Expire date and CVV, margin into one row 
-        <View style={styles.colomn1}>
+
+        <View style={styles.column1}>
           <Text style={styles.letter}> Expire date</Text>
           <Text style={styles.letter}> CVV </Text>
         </View>
 
-        <View style={styles.colomn2}>
+        <View style={styles.column2}>
           <TextInput
             placeholder="MMYY"
             placeholderTextColor="rgba(255,255,255,0.5)"
@@ -112,8 +107,7 @@ export default class Payment extends React.Component {
           />
         </View>
         
-//============================================================================================
-//Two Buttons
+
         <TouchableOpacity onPress={this.Payit}>
           <Text style={styles.pay}>Pay</Text>
         </TouchableOpacity>
@@ -127,19 +121,20 @@ export default class Payment extends React.Component {
     );
   }
 }
-//============================================================================================
-//styles
+
+
 const styles = StyleSheet.create({
+
   container: {
     flex: 1,
-    backgroundColor: '#3498db',
-    padding: 20,
-    paddingTop: 100,
+    backgroundColor: '#292a2b',
+    padding: 20
   },
+
   logo:{
     width:100,
     height:100,
-    marginLeft:"35%",
+    marginLeft:"35%"
   },
  
   input: {
@@ -147,13 +142,15 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.2)',
     color: '#FFF',
     paddingHorizontal: 10,
-    fontSize: 16,
+    fontSize: 16
   },
+
   letter: {
     color: '#ffffb3',
     fontSize: 20,
-    marginTop: 20,
+    marginTop: 20
   },
+
   pay: {
     color: '#bfff00',
     fontSize: 25,
@@ -162,28 +159,29 @@ const styles = StyleSheet.create({
     backgroundColor:'#3377ff',
     textAlign:'center',
     paddingVertical:15,
-    width:100,
+    width:100
   },
+
    cancel: {
     color: '#feca57',
     fontSize: 20,
     paddingTop:20,
     marginLeft: '30%',
-    
     textAlign:'center',
     paddingVertical:15,
     width:100,
     textDecorationLine: 'underline'
   },
-//---------------------------------------
-//margin into one row ( expire date + CVV)
-  colomn1: {
+
+  column1: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-between'
   },
-  colomn2: {
+
+  column2: {
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-between'
   },
+
 });

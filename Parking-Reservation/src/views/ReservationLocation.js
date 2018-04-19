@@ -137,8 +137,7 @@ export default class ReservationLocation extends React.Component {
           </PopupDialog>
 
 
-          <PopupDialog ref={(popupDialog) => { this.popupDialog = popupDialog; }}>
-            
+          <PopupDialog ref={(popupDialog) => { this.popupDialog = popupDialog; }}>       
             <View style={styles.modalSelection}>
 
               <Text>{this.state.cartArray.length}</Text>
@@ -254,17 +253,14 @@ export default class ReservationLocation extends React.Component {
               </TouchableOpacity>
 
             </View>
-
         </PopupDialog>
 
 
         <PopupDialog ref={(popupDialogReview) => { this.popupDialogReview = popupDialogReview; }}>
-          
           <View>
             <Text>{this.state.cartArray.length}</Text>
             <GridLayout items={this.state.cartArray} itemsPerRow={1} renderItem={this.renderSelectedspots}/>
           </View>
-
         </PopupDialog>
 
       </View>
