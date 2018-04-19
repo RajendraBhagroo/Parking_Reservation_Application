@@ -104,40 +104,42 @@ export default class ReservationLocation extends React.Component {
     return (
       <View style={styles.container}>
 
-        <Text style={styles.welcome}>NYIT</Text>
+        <Text style={styles.locationBannerText}>NYIT: Parking Garage</Text>
 
 
         <View style={styles.flex}>
           
 
-          <GridLayout items={items} itemsPerRow={10} renderItem={this.renderGridItem}/>
+          <View style={styles.grid}>
+            <GridLayout items={items} itemsPerRow={10} renderItem={this.renderGridItem}/>
+          </View>
 
 
           <Text>{this.cart}</Text>
-         
 
-          <TouchableOpacity style = {styles.loginButton} onPress = {() => this.paymentView()}>
-            <Text style = {styles.loginButtonText}>Next</Text>
-          </TouchableOpacity>
 
-          <TouchableOpacity style = {styles.loginButton} onPress = {() => this.popupReview()}>
-            <Text style = {styles.loginButtonText}>Review</Text>
-          </TouchableOpacity>
+            <View style={styles.navigationButtons}>
+              <TouchableOpacity style = {styles.navButton} onPress = {() => this.paymentView()}>
+                <Text style = {styles.navButtonText}>Next</Text>
+              </TouchableOpacity>
+    
+              <TouchableOpacity style = {styles.navButton} onPress = {() => this.popupReview()}>
+                <Text style = {styles.navButtonText}>Review</Text>
+              </TouchableOpacity>
+            </View>
 
 
           <PopupDialog ref={(popupDialogReview) => { this.popupDialogReview= popupDialogReview; }}>
-          
             <View>
               <GridLayout items={this.state.cartArray} itemsPerRow={1} renderItem={this.renderSelectedspots}/>
               <Text>PopupDialogReview</Text>
             </View>
-
           </PopupDialog>
 
 
           <PopupDialog ref={(popupDialog) => { this.popupDialog = popupDialog; }}>
             
-            <View>
+            <View style={styles.modalSelection}>
 
               <Text>{this.state.cartArray.length}</Text>
             
@@ -243,12 +245,12 @@ export default class ReservationLocation extends React.Component {
                 <Picker.Item label="11:30PM" value="47"/>
               </Picker>
             
-              <TouchableOpacity style = {styles.loginButton} onPress = {() => this.addSpot()}>
-                <Text style = {styles.loginButtonText}>Add</Text>
+              <TouchableOpacity style = {styles.navButton} onPress = {() => this.addSpot()}>
+                <Text style = {styles.navButtonText}>Add</Text>
               </TouchableOpacity>
               
-              <TouchableOpacity style = {styles.loginButton} onPress = {() => this.popupDialog.dismiss()}>
-                <Text style = {styles.loginButtonText}>Close</Text>
+              <TouchableOpacity style = {styles.navButton} onPress = {() => this.popupDialog.dismiss()}>
+                <Text style = {styles.navButtonText}>Close</Text>
               </TouchableOpacity>
 
             </View>
@@ -276,18 +278,23 @@ const styles = StyleSheet.create({
 
   container: {
     flex: 1,
-    marginTop: 20,
-    backgroundColor: '#F5FCFF'
+    backgroundColor: '#F5FCFF',
   },
 
-  welcome: {
+  locationBannerText: {
     fontSize: 20,
     textAlign: 'center',
-    margin: 10
+    margin: 10,
+    marginTop: 25
   },
 
   flex: {
     flex: 2  
+  },
+
+  grid: {
+    marginTop: 40,
+    marginBottom: 40
   },
 
   item: {
@@ -304,7 +311,18 @@ const styles = StyleSheet.create({
     color: '#000000'
   },
 
-  loginButton: {
+  modalSelection: {
+    alignItems: 'center',
+    justifyContent:'center',
+  },
+
+  navigationButtons: {
+    alignItems: 'center',
+    justifyContent:'center',
+    marginVertical: 20
+  },
+
+  navButton: {
     width: 300,
     backgroundColor: '#28a745',
     borderRadius: 25,
@@ -312,11 +330,11 @@ const styles = StyleSheet.create({
     paddingVertical: 13
   },
 
-  loginButtonText: {
+  navButtonText: {
     fontSize: 16,
     fontWeight: '500',
     color: '#ffffff',
     textAlign: 'center'
-  }
+  },
 
 });
