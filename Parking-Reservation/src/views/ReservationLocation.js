@@ -34,7 +34,14 @@ export default class ReservationLocation extends React.Component {
   }
 
   popupReview(){
+    this.forceUpdate();
+    if(this.cartArray.length==0)
+    {
+      this.toast("You need to select at least one spot")
+    }
+    else{
     this.popupDialogReview.show();
+    }
   }
 
   //displays the popup dialog and sets the current selected state
@@ -249,13 +256,6 @@ export default class ReservationLocation extends React.Component {
             </View>
         </PopupDialog>
 
-
-        <PopupDialog ref={(popupDialogReview) => { this.popupDialogReview = popupDialogReview; }}>
-          <View>
-            <Text>{this.state.cartArray.length}</Text>
-            <GridLayout items={this.state.cartArray} itemsPerRow={1} renderItem={this.renderSelectedspots}/>
-          </View>
-        </PopupDialog>
 
       </View>
         
