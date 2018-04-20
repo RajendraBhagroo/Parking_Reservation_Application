@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, TextInput, Text, Alert, TouchableOpacity, Image } from 'react-native';
 
-//might not need this line, see line 62
+/* Import Custom Components */
 import Logo from '../components/Logo';
 
+/* Allows For Routing */
 import { Actions } from 'react-native-router-flux';
 
 export default class Payment extends React.Component {
@@ -12,10 +13,10 @@ export default class Payment extends React.Component {
     super(props);
     this.state = {
       TextInputName: '',
-      Email: '',
+      Email:         '',
       TextInputCard: '',
       TextInputDate: '',
-      CVV: '',
+      CVV:           '',
     };
   }
 
@@ -56,22 +57,10 @@ export default class Payment extends React.Component {
 
   render() {
     return (
-     
       <View style={styles.container}>
-      //============================================================
-      // you might want to delete or change <Logo/> because it uses your style from component
-      <Logo/>
-      /*
-      Here is my code that works for this page
-      <View >
-      <Image 
-      style={styles.logo}
-      source={require('../the location of the image/name.png')}
-      />
-      </View>
-      change if you need it, i dont know why but my 
-      */
-      //============================================================
+
+        <Logo/>
+
         <Text style={styles.letter}> Name </Text>
         <TextInput
           placeholder="As it appears on your card"
@@ -141,13 +130,11 @@ const styles = StyleSheet.create({
     padding: 20
   },
 
- //=================================================
- logo:{
-   marginLeft:'35%',
- width:100,
- height:100,
- },
- //=================================================
+  logo: {
+    marginLeft:'35%',
+    width:100,
+    height:100,
+  },
  
   input: {
     height: 40,
@@ -184,6 +171,7 @@ const styles = StyleSheet.create({
     width:70,
     textDecorationLine: 'underline'
   },
+
   short:{
    height: 50,
     backgroundColor: 'rgba(255,255,255,0.2)',
@@ -192,7 +180,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign:'center',
     width:70
-},
+  },
+
   column1: {
     flexDirection: 'row',
     justifyContent: 'space-between'
