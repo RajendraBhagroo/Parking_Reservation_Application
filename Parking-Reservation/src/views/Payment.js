@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, TextInput, Text, Alert, TouchableOpacity, Image } from 'react-native';
 
-/* Import Custom Components */
+//might not need this line, see line 62
 import Logo from '../components/Logo';
 
-/* Allows For Routing */
 import { Actions } from 'react-native-router-flux';
 
 export default class Payment extends React.Component {
-
+  
   constructor(props){
     super(props);
     this.state = {
@@ -59,9 +58,20 @@ export default class Payment extends React.Component {
     return (
      
       <View style={styles.container}>
-
-        <Logo/>
-
+      //============================================================
+      // you might want to delete or change <Logo/> because it uses your style from component
+      <Logo/>
+      /*
+      Here is my code that works for this page
+      <View >
+      <Image 
+      style={styles.logo}
+      source={require('../the location of the image/name.png')}
+      />
+      </View>
+      change if you need it, i dont know why but my 
+      */
+      //============================================================
         <Text style={styles.letter}> Name </Text>
         <TextInput
           placeholder="As it appears on your card"
@@ -97,13 +107,13 @@ export default class Payment extends React.Component {
             placeholder="MMYY"
             placeholderTextColor="rgba(255,255,255,0.5)"
             onChangeText={TextInputDate => this.setState({ TextInputDate })}
-            style={styles.input}
+            style={styles.short}
           />
           <TextInput
             placeholder="XXX"
             placeholderTextColor="rgba(255,255,255,0.5)"
             onChangeText={CVV => this.setState({ CVV })}
-            style={styles.input}
+            style={styles.short}
           />
         </View>
         
@@ -127,22 +137,24 @@ const styles = StyleSheet.create({
 
   container: {
     flex: 1,
-    backgroundColor: '#292a2b',
+    backgroundColor: '#0097e6',
     padding: 20
   },
 
-  logo:{
-    width:100,
-    height:100,
-    marginLeft:"35%"
-  },
+ //=================================================
+ logo:{
+   marginLeft:'35%',
+ width:100,
+ height:100,
+ },
+ //=================================================
  
   input: {
-    height: 50,
+    height: 40,
     backgroundColor: 'rgba(255,255,255,0.2)',
     color: '#FFF',
     paddingHorizontal: 10,
-    fontSize: 16
+    fontSize: 15
   },
 
   letter: {
@@ -153,26 +165,34 @@ const styles = StyleSheet.create({
 
   pay: {
     color: '#bfff00',
-    fontSize: 25,
-    paddingTop:10,
+    fontSize: 20,
+    paddingTop:5,
     marginLeft: '30%',
     backgroundColor:'#3377ff',
     textAlign:'center',
-    paddingVertical:15,
-    width:100
+    paddingVertical:5,
+    width:70
   },
 
    cancel: {
     color: '#feca57',
     fontSize: 20,
-    paddingTop:20,
+    paddingTop:5,
     marginLeft: '30%',
     textAlign:'center',
-    paddingVertical:15,
-    width:100,
+    paddingVertical:5,
+    width:70,
     textDecorationLine: 'underline'
   },
-
+  short:{
+   height: 50,
+    backgroundColor: 'rgba(255,255,255,0.2)',
+    color: '#FFF',
+    paddingHorizontal: 10,
+    fontSize: 16,
+    textAlign:'center',
+    width:70
+},
   column1: {
     flexDirection: 'row',
     justifyContent: 'space-between'
