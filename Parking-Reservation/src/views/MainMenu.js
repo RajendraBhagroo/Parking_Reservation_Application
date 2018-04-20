@@ -1,9 +1,12 @@
 import React from 'react';
 import { Component } from 'react';
-import { StyleSheet, Text, View, Image, StatusBar, TouchableOpacity, Vibration } from 'react-native';
+import { StyleSheet, Text, View, StatusBar, ToastAndroid, TouchableOpacity, Vibration } from 'react-native';
 
 /* Import Custom Components */
 import Logo from '../components/Logo';
+
+/* FireBase */
+import * as firebase from 'firebase';
 
 /* Allows For Routing */
 import { Actions } from 'react-native-router-flux';
@@ -23,10 +26,27 @@ export default class MainMenu extends React.Component {
 		  Vibration.vibrate(20);
     }
 
-    /* Redirects To Login View */
-    loginView() {
-      Actions.login();
+    /* User Is Logged Out, Redirects to Login View */
+    logout() {
+
+      firebase.auth().signOut()
+      .then( (res) => {
+        Actions.pop();
+      }).catch( (error) =>
+        this.toast(error));
+
 		  Vibration.vibrate(20);
+    }
+
+    /* Displays Android Style Notification Bubble */
+    toast(message) {
+      ToastAndroid.showWithGravityAndOffset(
+                  message,
+                  ToastAndroid.SHORT,
+                  ToastAndroid.BOTTOM,
+                  25,
+                  250
+        );
     }
 
 
@@ -49,7 +69,7 @@ export default class MainMenu extends React.Component {
                 <Text style = {styles.ReservationReviewButtonText}>Review Reservation</Text>
             </TouchableOpacity>
     
-            <TouchableOpacity  style = {styles.LogoutButton} onPress = {this.loginView}>
+            <TouchableOpacity  style = {styles.LogoutButton} onPress = {this.logout}>
                 <Text style = {styles.LogoutButtonText}>Logout</Text>
             </TouchableOpacity>
     

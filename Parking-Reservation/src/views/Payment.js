@@ -61,7 +61,7 @@ export default class Payment extends React.Component {
 
         <Logo/>
 
-        <Text style={styles.letter}> Name </Text>
+        <Text style={styles.letter}>Name</Text>
         <TextInput
           placeholder="As it appears on your card"
           placeholderTextColor="rgba(255,255,255,0.5)"
@@ -69,7 +69,7 @@ export default class Payment extends React.Component {
           style={styles.input}
         />
 
-        <Text style={styles.letter}> Email </Text>
+        <Text style={styles.letter}>Email</Text>
         <TextInput
           placeholder="Get Notification"
           placeholderTextColor="rgba(255,255,255,0.5)"
@@ -77,7 +77,7 @@ export default class Payment extends React.Component {
           style={styles.input}
         />
 
-        <Text style={styles.letter}> Card Number </Text>
+        <Text style={styles.letter}>Card Number</Text>
         <TextInput
           placeholder="No dashes or spaces"
           placeholderTextColor="rgba(255,255,255,0.5)"
@@ -87,8 +87,8 @@ export default class Payment extends React.Component {
 
 
         <View style={styles.column1}>
-          <Text style={styles.letter}> Expire date</Text>
-          <Text style={styles.letter}> CVV </Text>
+          <Text style={styles.letter}>Expire date</Text>
+          <Text style={styles.letter}>CVV</Text>
         </View>
 
         <View style={styles.column2}>
