@@ -14,7 +14,7 @@ export default class ReservationLocation extends React.Component {
   
   /*selectedTime1 = Starting time
   * selectedTime2 = End Time
-  * selectedSpot = Spot to add
+  * selectedSpot  = Spot to add
   * values in cart are stored as spot*startTime*endTime
   */
  
@@ -55,23 +55,17 @@ export default class ReservationLocation extends React.Component {
   }
 
   renderGridItem = (item) => (
-    <View style={styles.container}>
-
-      <View style={styles.flex}/>
-
-      <TouchableOpacity style = {styles.item} onPress = {()=>this.popup(item.name)}>
-            <Text style = {styles.name}>{item.name}</Text>
+    <View>
+      <TouchableOpacity style = {styles.spot} onPress = {()=>this.popup(item.name)}>
+            <Text style = {styles.spotText}>{item.name}</Text>
       </TouchableOpacity>
-
     </View>
   );
 
   renderSelectedspots=(item)=> (
-    <View style={styles.container}>
+    <View>
 
-      <View style={styles.flex}/>
-
-      <TouchableOpacity style ={styles.item} onPress={()=>this.toast("Pressed an item")}>
+      <TouchableOpacity style ={styles.spot} onPress={()=>this.toast("Pressed an item")}>
         <Text>{this.state.cartArray.length}</Text>
       </TouchableOpacity>
 
@@ -103,13 +97,11 @@ export default class ReservationLocation extends React.Component {
 
     return (
       <View style={styles.container}>
-
         <Text style={styles.locationBannerText}>NYIT: Parking Garage</Text>
 
+        <Text>{this.cart}</Text>
 
-        <View style={styles.flex}>
-          
-
+        <View>
           <View style={styles.grid}>
             <GridLayout items={items} itemsPerRow={10} renderItem={this.renderGridItem}/>
           </View>
@@ -118,7 +110,7 @@ export default class ReservationLocation extends React.Component {
           <Text>{this.cart}</Text>
 
 
-            <View style={styles.navigationButtons}>
+            <View style={styles.navButtonGroup}>
               <TouchableOpacity style = {styles.navButton} onPress = {() => this.paymentView()}>
                 <Text style = {styles.navButtonText}>Next</Text>
               </TouchableOpacity>
@@ -244,13 +236,15 @@ export default class ReservationLocation extends React.Component {
                 <Picker.Item label="11:30PM" value="47"/>
               </Picker>
             
-              <TouchableOpacity style = {styles.navButton} onPress = {() => this.addSpot()}>
-                <Text style = {styles.navButtonText}>Add</Text>
-              </TouchableOpacity>
-              
-              <TouchableOpacity style = {styles.navButton} onPress = {() => this.popupDialog.dismiss()}>
-                <Text style = {styles.navButtonText}>Close</Text>
-              </TouchableOpacity>
+              <View style ={styles.modalButtonGroup}>
+                <TouchableOpacity style = {styles.modalButton} onPress = {() => this.addSpot()}>
+                  <Text style = {styles.modalButtonText}>Add</Text>
+                </TouchableOpacity>
+                
+                <TouchableOpacity style = {styles.modalButton} onPress = {() => this.popupDialog.dismiss()}>
+                  <Text style = {styles.modalButtonText}>Close</Text>
+                </TouchableOpacity>
+              </View>
 
             </View>
         </PopupDialog>
@@ -284,35 +278,53 @@ const styles = StyleSheet.create({
     marginTop: 25
   },
 
-  flex: {
-    flex: 2  
-  },
-
   grid: {
     marginTop: 40,
-    marginBottom: 40
+    marginBottom: 40,
+    width: '100%'
   },
 
-  item: {
+  spot: {
     height: 80,
     width: 40,
     backgroundColor: '#28a745',
-    padding: 5
+    padding: 5,
+    justifyContent: 'center'
   },
 
-  name: {
+  spotText: {
     fontSize: 12,
     fontWeight: 'bold',
     textAlign: 'center',
-    color: '#000000'
+    color: '#000000',
+    paddingVertical: 25
   },
 
   modalSelection: {
-    alignItems: 'center',
-    justifyContent:'center',
   },
 
-  navigationButtons: {
+  modalButtonGroup: {
+    alignItems: 'center',
+    justifyContent:'center',
+    top: 10
+  },
+
+  modalButton: {
+    width: 300,
+    backgroundColor: '#28a745',
+    borderRadius: 25,
+    marginVertical: 10,
+    paddingVertical: 13
+  },
+
+  modalButtonText: {
+    fontSize: 16,
+    fontWeight: '500',
+    color: '#ffffff',
+    textAlign: 'center'
+  },
+
+  navButtonGroup: {
     alignItems: 'center',
     justifyContent:'center',
     marginVertical: 20
