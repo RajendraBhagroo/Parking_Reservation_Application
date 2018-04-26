@@ -3,7 +3,7 @@ import { Component } from 'react';
 import { StyleSheet, View, StatusBar } from 'react-native';
 
 /* FireBase */
-import * as firebase from 'firebase';
+import firebase from 'firebase';
 
 /* Routes */
 import Routes from './src/Routes';
@@ -12,15 +12,17 @@ export default class App extends React.Component {
 
   /* Firebase Integration */
   componentWillMount() {
-    firebase.initializeApp({
+    var config = {
       apiKey: "AIzaSyCntfGKhOaiKl8I0OKWVoB55AazqBSkcZo",
       authDomain: "parking-reservation-c681e.firebaseapp.com",
       databaseURL: "https://parking-reservation-c681e.firebaseio.com",
       projectId: "parking-reservation-c681e",
       storageBucket: "parking-reservation-c681e.appspot.com",
       messagingSenderId: "342940906918"
-    });
+    };
+    firebase.initializeApp(config);
   }
+
 
   render() {
     return (
