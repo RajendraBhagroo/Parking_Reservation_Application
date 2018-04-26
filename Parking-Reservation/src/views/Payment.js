@@ -17,6 +17,7 @@ export default class Payment extends React.Component {
       TextInputCard: '',
       TextInputDate: '',
       CVV:           '',
+      FinalCart: this.props.cart
     };
   }
 

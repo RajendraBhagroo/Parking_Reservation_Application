@@ -24,18 +24,81 @@ export default class ReservationLocation extends React.Component {
     selectedSpot:"Default Value",
     cartArray:[]
   }
+ 
+  convertValtoTime(value){
+    var timeVal;
+    switch(value){
+      case 0:
+      timeVal="12:00AM";
+      break;
+      case 1:
+      timeVal="12:30AM";
+      break;
+      case 2:
+      timeVal="1:00AM";
+      break;
+      case 3:
+      timeVal="1:30AM";
+      break;
+      case 4:
+      timeVal="2:00AM";
+      break;
+      case 5:
+      timeVal="2:30AM";
+      break;
+      case 6:
+      timeVal="3:00AM";
+      break;
+      case 7:
+      timeVal="3:30AM";
+      break;
+      case 8:
+      timeVal="4:00AM";
+      break;
+      case 9:
+      timeVal="4:30AM";
+      break;
+      case 10:
+      timeVal="5:00AM";
+      break;
+      case 11:
+      timeVal="5:30AM";
+      break;
+      case 12:
+      timeVal="6:00AM";
+      break;
+      case 13:
+      timeVal="6:30AM";
+      break;
+      case 14:
+      timeVal="7:00AM";
+      break;
+      case 15:
+      timeVal="7:30AM";
+      break;
+      case 16:
+      timeVal="8:00AM";
+      break;
+      case 19:
+      timeVal="8:30AM";
+      break;
+      case 20:
+      timeVal="9:00AM"
+      break;
+    }
 
+  }
   paymentView(){
     if(this.state.cartArray.length==0){
       this.toast("You must select a spot first")
     } else {
-       Actions.payment();
+       Actions.payment({cart:this.state.cartArray});
       }
   }
-
+  
   popupReview(){
     this.forceUpdate();
-    if(this.cartArray.length==0)
+    if(this.state.cartArray.length==0)
     {
       this.toast("You need to select at least one spot")
     }
@@ -56,9 +119,24 @@ export default class ReservationLocation extends React.Component {
 
   //adds a spot to the cart
   addSpot(){
-    this.state.cartArray.push({spotName:this.state.selectedSpot,startTime:this.state.selectedTime1,endTime:this.state.selecteTime2});
+    this.state.cartArray.push({spotName:this.state.selectedSpot,startTime:this.state.selectedTime1,endTime:this.state.selectedTime2});
     this.popupDialog.dismiss();
     this.toast(String(this.state.cartArray.length));
+  }
+
+  removeSpot(spotID,sTime,eTime){
+    for(let y=0;y<this.state.cartArray.length;y++)
+    {
+      if(spotID==this.state.cartArray[y].spotName && sTime==this.state.cartArray[y].startTime && eTime==this.state.cartArray[y].endTime)
+      {
+        this.toast("Found a match");
+        this.state.cartArray.splice(y,1);
+        break;
+      }
+ 
+    }
+    
+    this.popupDialogReview.dismiss();
   }
 
   renderGridItem = (item) => (
@@ -72,8 +150,8 @@ export default class ReservationLocation extends React.Component {
   renderSelectedspots=(item)=> (
     <View>
 
-      <TouchableOpacity style ={styles.spot} onPress={()=>this.toast("Pressed an item")}>
-        <Text>{this.state.cartArray.length}</Text>
+      <TouchableOpacity style ={styles.spot} onPress={()=>this.removeSpot(item.spotName,item.startTime,item.endTime)}>
+        <Text>{item.spotName}</Text>
       </TouchableOpacity>
 
     </View>
@@ -132,6 +210,9 @@ export default class ReservationLocation extends React.Component {
             <View>
               <GridLayout items={this.state.cartArray} itemsPerRow={1} renderItem={this.renderSelectedspots}/>
               <Text>PopupDialogReview</Text>
+              <TouchableOpacity style = {styles.navButton} onPress = {() => this.popupDialogReview.dismiss()}>
+                <Text style = {styles.navButtonText}>Close</Text>
+              </TouchableOpacity>
             </View>
           </PopupDialog>
 
@@ -282,6 +363,13 @@ const styles = StyleSheet.create({
     marginTop: 40,
     marginBottom: 40,
     width: '100%'
+  },
+  SelectedSpot: {
+    height: 80,
+    width: 160,
+    backgroundColor: '#28a745',
+    padding: 5,
+    justifyContent: 'center'
   },
 
   spot: {
