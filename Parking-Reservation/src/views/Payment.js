@@ -17,15 +17,23 @@ export default class Payment extends React.Component {
       TextInputCard: '',
       TextInputDate: '',
       CVV:           '',
-      FinalCart: this.props.cart
+      FinalCart:     this.props.cart
     };
   }
 
- Cancel = () => {
-    Alert.alert('Test');
- };
+  paymentButton = () => {
+  
+    if(this.paymentVerification()){
+      /* Send Objects To Database*/
+    }
 
-  Payit = () => {
+  }
+
+  Cancel = () => {
+    Alert.alert('Test');
+  };
+
+  paymentVerification = () => {
     const { TextInputName } = this.state;
     const { Email }         = this.state;
     const { TextInputCard } = this.state;
@@ -48,6 +56,7 @@ export default class Payment extends React.Component {
               Alert.alert('Please Enter A Valid CVV');
             } else {
               Alert.alert('Success!', 'You have Register Your Spot!');
+              return true;
             }
           }
         }
@@ -62,48 +71,48 @@ export default class Payment extends React.Component {
 
         <Logo/>
 
-        <Text style={styles.letter}>Name</Text>
+        <Text style={styles.label}>Name</Text>
         <TextInput
-          placeholder="As it appears on your card"
-          placeholderTextColor="rgba(255,255,255,0.5)"
-          onChangeText={TextInputName => this.setState({ TextInputName })}
-          style={styles.input}
+          placeholder           = "As it appears on your card"
+          placeholderTextColor  = "rgba(255,255,255,0.5)"
+          onChangeText          = {TextInputName => this.setState({ TextInputName })}
+          style                 = {styles.input}
         />
 
-        <Text style={styles.letter}>Email</Text>
+        <Text style={styles.label}>Email</Text>
         <TextInput
-          placeholder="Get Notification"
-          placeholderTextColor="rgba(255,255,255,0.5)"
-          onChangeText={Email => this.setState({ Email })}
-          style={styles.input}
+          placeholder          = "Get Notification"
+          placeholderTextColor = "rgba(255,255,255,0.5)"
+          onChangeText         = {Email => this.setState({ Email })}
+          style                = {styles.input}
         />
 
-        <Text style={styles.letter}>Card Number</Text>
+        <Text style={styles.label}>Card Number</Text>
         <TextInput
-          placeholder="No dashes or spaces"
-          placeholderTextColor="rgba(255,255,255,0.5)"
-          onChangeText={TextInputCard => this.setState({ TextInputCard })}
-          style={styles.input}
+          placeholder          = "No dashes or spaces"
+          placeholderTextColor = "rgba(255,255,255,0.5)"
+          onChangeText         = {TextInputCard => this.setState({ TextInputCard })}
+          style                = {styles.input}
         />
 
 
         <View style={styles.column1}>
-          <Text style={styles.letter}>Expire date</Text>
-          <Text style={styles.letter}>CVV</Text>
+          <Text style={styles.label}>Expire date</Text>
+          <Text style={styles.label}>CVV</Text>
         </View>
 
         <View style={styles.column2}>
           <TextInput
-            placeholder="MMYY"
-            placeholderTextColor="rgba(255,255,255,0.5)"
-            onChangeText={TextInputDate => this.setState({ TextInputDate })}
-            style={styles.short}
+            placeholder          = "MMYY"
+            placeholderTextColor = "rgba(255,255,255,0.5)"
+            onChangeText         = {TextInputDate => this.setState({ TextInputDate })}
+            style                = {styles.short}
           />
           <TextInput
-            placeholder="XXX"
-            placeholderTextColor="rgba(255,255,255,0.5)"
-            onChangeText={CVV => this.setState({ CVV })}
-            style={styles.short}
+            placeholder          = "XXX"
+            placeholderTextColor = "rgba(255,255,255,0.5)"
+            onChangeText         = {CVV => this.setState({ CVV })}
+            style                = {styles.short}
           />
         </View>
         
@@ -145,7 +154,7 @@ const styles = StyleSheet.create({
     fontSize: 15
   },
 
-  letter: {
+  label: {
     color: '#ffffb3',
     fontSize: 20,
     marginTop: 20
