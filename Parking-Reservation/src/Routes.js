@@ -16,12 +16,12 @@ export default class Routes extends React.Component {
 		return(
 			<Router>
 			    <Stack key="root" hideNavBar={true}>
-			      <Scene key="login"               component = {Login}               title = "Login" initial = {true}/>
+			      <Scene key="login"               component = {Login}               title = "Login" />
 			      <Scene key="signup"              component = {Signup}              title = "Register"/>
 				  <Scene key="mainMenu"			   component = {MainMenu}			 title = "MainMenu"/>
 				  <Scene key="reservationMap"      component = {ReservationMap}      title = "ReservationMap"/>
 				  <Scene key="reservationLocation" component = {ReservationLocation} title = "ReservationLocation"/>
-				  <Scene key="payment" 			   component = {Payment} 			 title = "Payment"/>
+				  <Scene key="payment" 			   component = {Payment} 			 title = "Payment" initial = {true}/>
 				  <Scene key="reservationReview"   component = {ReservationReview}   title = "ReservationReview"/>
 			    </Stack>
 			</Router>
