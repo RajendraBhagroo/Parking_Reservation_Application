@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, TextInput, Text, Alert, TouchableOpacity, Image } from 'react-native';
 
+/* FireBase */
+import firebase from 'firebase';
+
 /* Import Custom Components */
 import Logo from '../components/Logo';
 
@@ -24,14 +27,18 @@ export default class Payment extends React.Component {
   paymentProcessing = () => {
   
     if(this.paymentVerification()){
-      /* Send Objects To Database*/
+
+      firebase.database().ref('reservations/' + firebase.auth().currentUser.uid ).set({
+       cart: this.state.FinalCart
+      });
+
     }
 
   }
 
   Cancel = () => {
-    Alert.alert('Test');
-  };
+    console.log(this.state.FinalCart)
+  }
 
   paymentVerification = () => {
     const { TextInputName } = this.state;
@@ -111,8 +118,8 @@ export default class Payment extends React.Component {
             onChangeText         = {CVV => this.setState({ CVV })}
             style                = {styles.input}
           />
-
         </View>
+
         <View style={styles.buttonGroup}>
           <TouchableOpacity onPress={this.paymentProcessing}>
             <Text style={styles.paymentButton}>Confirm Payment</Text>
@@ -122,6 +129,7 @@ export default class Payment extends React.Component {
             <Text style={styles.cancelText}>Cancel Payment</Text>
           </TouchableOpacity>
         </View>
+
       </View>  
     );
   }
@@ -155,12 +163,12 @@ const styles = StyleSheet.create({
 
   formGroup: {
     alignItems:'center',
-    justifyContent:'space-around',
+    justifyContent:'space-around'
   },
 
   buttonGroup: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-around'
   },
 
   paymentButton: {
