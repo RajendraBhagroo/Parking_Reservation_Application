@@ -29,7 +29,7 @@ export default class Payment extends React.Component {
     if(this.paymentVerification()){
 
       firebase.database().ref('reservations/' + firebase.auth().currentUser.uid ).set({
-       cart: this.state.FinalCart
+       User_Reservations_Cart: this.state.FinalCart
       });
 
     }
