@@ -1,6 +1,6 @@
 import React from 'react';
 import { Component } from 'react';
-import { StyleSheet, Text, View, StatusBar, TouchableOpacity, Vibration } from 'react-native';
+import { StyleSheet, Text, View, StatusBar, TouchableOpacity, BackHandler, Vibration } from 'react-native';
 
 /* Import Custom Components */
 import Logo from '../components/Logo';
@@ -9,8 +9,11 @@ import LoginForm from '../components/LoginForm';
 /* Allows For Routing */
 import { Actions } from 'react-native-router-flux';
 
-
 export default class Login extends React.Component {
+
+	componentWillMount() {
+		BackHandler.addEventListener('hardwareBackPress', () => {return true});
+ } 
 
   /* Redirects To Login View */
 	signup() {
@@ -46,6 +49,7 @@ export default class Login extends React.Component {
 			)
 	}
 }
+
 
 const styles = StyleSheet.create({
 

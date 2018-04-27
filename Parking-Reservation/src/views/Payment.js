@@ -22,7 +22,7 @@ export default class Payment extends React.Component {
   }
 
  Cancel = () => {
-    Alert.alert('Test');
+  Actions.reservationLocation();
  };
 
   Payit = () => {
@@ -47,7 +47,8 @@ export default class Payment extends React.Component {
             if (isNaN(this.state.CVV) || CVV.length > 4|| CVV.length < 3) {
               Alert.alert('Please Enter A Valid CVV');
             } else {
-              Alert.alert('Success!', 'You have Register Your Spot!');
+              Alert.alert('Success!', 'You have Register Your Spot!\nThe Receipt was Sent by Email.');
+              Actions.login();
             }
           }
         }
