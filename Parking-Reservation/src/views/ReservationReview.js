@@ -2,13 +2,28 @@ import React from 'react';
 import { Component } from 'react';
 import { StyleSheet, Text, View, Image, StatusBar, TouchableOpacity, Alert, Vibration } from 'react-native';
 
+/* FireBase */
+import firebase from 'firebase';
+
 /* Allows For Routing */
 import { Actions } from 'react-native-router-flux';
 
-import * as firebase from 'firebase';
-
 
 export default class ReservationReview extends React.Component {
+
+    constructor(props){
+        super(props);
+        this.state = {
+            spotName: 0,
+            startTime: 0, 
+            endTime: 0,
+            FinalCart: this.props.cart
+        }
+      }
+
+    dataBase  = firebase.database();
+    userID    = firebase.auth().currentUser.uid;
+    userEmail = firebase.auth().currentUser.email[0].toUpperCase() + firebase.auth().currentUser.email.substring(1);
 
     /* Redirects To ReservationMap View */
     MainMenuView(){
@@ -16,66 +31,28 @@ export default class ReservationReview extends React.Component {
         Vibration.vibrate(20);
     }
 
-    state = {spotName: 0, startTime: 0, endTime: 0}
-
-    onPressButton1 () {
-        this.forceUpdate();
-        this.database = firebase.database();
-        const userID = firebase.auth().currentUser.uid;
-        firebase.database().ref('reservations/'+ userID +'/cart/0/spotName').on('value', snapshot => {this.setState({spotName: snapshot.val()});});
-        firebase.database().ref('reservations/'+ userID +'/cart/0/startTime').on('value', snapshot => {this.setState({startTime: snapshot.val()});});
-        firebase.database().ref('reservations/'+ userID +'/cart/0/endTime').on('value', snapshot => {this.setState({endTime: snapshot.val()});});
-        
-        Alert.alert(
-            '1st Reservated slot',
-            'Spot Number: ' + this.state.spotName + '\nStart Time: ' + this.state.startTime + '\nEnd Time: ' + this.state.endTime,
-            [
-                {text: 'Cancel Reservation', onPress: () => console.log('Reservation on selected slot has been canceled.')},
-                {text: 'OK', onPress: () => console.log('OK Pressed')},
-            ],
-            { cancelable: false }
-        );
-        this.forceUpdate();
+    update = (i) => {
+        this.dataBase.ref('reservations/'+ this.userID +'/cart/' + i +'/spotName') .on('value', snapshot => {this.setState({spotName:  snapshot.val()});});
+        this.dataBase.ref('reservations/'+ this.userID +'/cart/' + i +'/startTime').on('value', snapshot => {this.setState({startTime: snapshot.val()});});
+        this.dataBase.ref('reservations/'+ this.userID +'/cart/' + i +'/endTime')  .on('value', snapshot => {this.setState({endTime:   snapshot.val()});});
     }
 
-    onPressButton2 () {
-        this.forceUpdate();
-        this.database = firebase.database();
-        const userID = firebase.auth().currentUser.uid;
-        firebase.database().ref('reservations/'+ userID +'/cart/1/spotName').on('value', snapshot => {this.setState({spotName: snapshot.val()});});
-        firebase.database().ref('reservations/'+ userID +'/cart/1/startTime').on('value', snapshot => {this.setState({startTime: snapshot.val()});});
-        firebase.database().ref('reservations/'+ userID +'/cart/1/endTime').on('value', snapshot => {this.setState({endTime: snapshot.val()});});
-        Alert.alert(
-            '2nd Reservated slot',
-            'Spot Number: ' + this.state.spotName + '\nStart Time: ' + this.state.startTime + '\nEnd Time: ' + this.state.endTime,
-            [
-                {text: 'Cancel Reservation', onPress: () => console.log('Reservation on selected slot has been canceled.')},
-                {text: 'OK', onPress: () => console.log('OK Pressed')},
-            ],
-            { cancelable: false }
-        );
-        this.forceUpdate();
-    }
-    
-    onPressButton3 () {
-        this.forceUpdate();
-        this.database = firebase.database();
-        const userID = firebase.auth().currentUser.uid;
-        firebase.database().ref('reservations/'+ userID +'/cart/2/spotName').on('value', snapshot => {this.setState({spotName: snapshot.val()});});
-        firebase.database().ref('reservations/'+ userID +'/cart/2/startTime').on('value', snapshot => {this.setState({startTime: snapshot.val()});});
-        firebase.database().ref('reservations/'+ userID +'/cart/2/endTime').on('value', snapshot => {this.setState({endTime: snapshot.val()});});
-        Alert.alert(
-            '3rd Reservated slot',
-            'Spot Number: ' + this.state.spotName + '\nStart Time: ' + this.state.startTime + '\nEnd Time: ' + this.state.endTime,
-            [
-                {text: 'Cancel Reservation', onPress: () => console.log('Reservation on selected slot has been canceled.')},
-                {text: 'OK', onPress: () => console.log('OK Pressed')},
-            ],
-            { cancelable: false }
-        );
-        this.forceUpdate();
-    }
+    viewReservations = () => {
+        for( let i = 0; i < 3; i++){
 
+            this.update(i);
+
+            Alert.alert(
+                'Reservation Number: ' + i,
+                'Spot Number: ' + this.state.spotName + '\nStart Time: ' + this.state.startTime + '\nEnd Time: ' + this.state.endTime,
+                [
+                    {text: 'Cancel Reservation', onPress: console.log('Reservation on selected slot has been canceled.')},
+                    {text: 'OK', onPress: console.log('OK Pressed')},
+                ],
+                { cancelable: false }
+            );
+        }
+    }
 
 
 	render() {
@@ -87,21 +64,9 @@ export default class ReservationReview extends React.Component {
                     barStyle="light-content"
                 />
 
-                <TouchableOpacity style = {styles.ReservationButton}
-                        onPress = {this.onPressButton1.bind(this)}>
-                <Text style = {styles.ButtonText}>1st Reservated Slot</Text>
-                </TouchableOpacity>
 
-
-                <TouchableOpacity style = {styles.ReservationButton}
-                        onPress = {this.onPressButton2.bind(this)}>
-                <Text style = {styles.ButtonText}>2nd Reservated Slot</Text>
-                </TouchableOpacity>
-
-
-                <TouchableOpacity style = {styles.ReservationButton}
-                        onPress = {this.onPressButton3.bind(this)}>
-                <Text style = {styles.ButtonText}>3rd Reservated Slot</Text>
+                <TouchableOpacity style = {styles.ReservationButton} onPress = {this.viewReservations.bind(this)}>
+                <Text style = {styles.ButtonText}>Reserved Parking Spots: {this.userEmail}</Text>
                 </TouchableOpacity>
 
 

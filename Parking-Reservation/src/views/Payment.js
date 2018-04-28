@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View, TextInput, Text, Alert, TouchableOpacity, Image } from 'react-native';
 
 /* FireBase */
-import * as firebase from 'firebase';
+import firebase from 'firebase';
 
 /* Import Custom Components */
 import Logo from '../components/Logo';
