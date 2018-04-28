@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Thu Apr 26 18:26:56 EDT 2018
+#Fri Apr 27 18:30:34 EDT 2018
 17.baseType=DIRECTORY
 4.path=lib/armeabi-v7a/libfb.so
 25.base=C\:\\Users\\MK\\react_workspace\\Parking_Reservation_Application\\Parking-Reservation\\android\\app\\build\\intermediates\\transforms\\mergeJniLibs\\debug\\0

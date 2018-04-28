@@ -11,9 +11,14 @@ export default class LoginForm extends React.Component {
   
   state = { email: '', password: '' };
   
-  /* Redirects To ReservationMap View */
+  /* Redirects To MainMenu View */
 	MainMenuView() {
 		Actions.mainMenu();
+  }
+
+  /* Redirects To ReservationMap View */
+	reservationMapView() {
+		Actions.reservationMap();
   }
 
   /* Firebase : Authentication -> Email & Password Login */

@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, TextInput, Text, Alert, TouchableOpacity, Image } from 'react-native';
 
+/* FireBase */
+import * as firebase from 'firebase';
+
 /* Import Custom Components */
 import Logo from '../components/Logo';
 
@@ -17,15 +20,28 @@ export default class Payment extends React.Component {
       TextInputCard: '',
       TextInputDate: '',
       CVV:           '',
-      FinalCart: this.props.cart
+      FinalCart:     this.props.cart
     };
   }
 
- Cancel = () => {
-  Actions.reservationLocation();
- };
+  paymentProcessing = () => {
+  
+    if(this.paymentVerification()){
 
-  Payit = () => {
+      firebase.database().ref('reservations/' + firebase.auth().currentUser.uid ).set({
+       cart: this.state.FinalCart
+      });
+
+    }
+
+  }
+
+  Cancel = () => {
+    console.log(this.state.FinalCart)
+    Actions.reservationLocation();
+  }
+
+  paymentVerification = () => {
     const { TextInputName } = this.state;
     const { Email }         = this.state;
     const { TextInputCard } = this.state;
@@ -48,6 +64,16 @@ export default class Payment extends React.Component {
               Alert.alert('Please Enter A Valid CVV');
             } else {
               Alert.alert('Success!', 'You have Register Your Spot!\nThe Receipt was Sent by Email.');
+              return true;
+
+              firebase.auth().signOut()
+              .then( (res) => {
+                Actions.pop();
+              }).catch( (error) =>
+                this.toast(error));
+        
+              Vibration.vibrate(20);
+              
               Actions.login();
             }
           }
@@ -63,62 +89,59 @@ export default class Payment extends React.Component {
 
         <Logo/>
 
-        <Text style={styles.letter}>Name</Text>
-        <TextInput
-          placeholder="As it appears on your card"
-          placeholderTextColor="rgba(255,255,255,0.5)"
-          onChangeText={TextInputName => this.setState({ TextInputName })}
-          style={styles.input}
-        />
-
-        <Text style={styles.letter}>Email</Text>
-        <TextInput
-          placeholder="Get Notification"
-          placeholderTextColor="rgba(255,255,255,0.5)"
-          onChangeText={Email => this.setState({ Email })}
-          style={styles.input}
-        />
-
-        <Text style={styles.letter}>Card Number</Text>
-        <TextInput
-          placeholder="No dashes or spaces"
-          placeholderTextColor="rgba(255,255,255,0.5)"
-          onChangeText={TextInputCard => this.setState({ TextInputCard })}
-          style={styles.input}
-        />
-
-
-        <View style={styles.column1}>
-          <Text style={styles.letter}>Expire date</Text>
-          <Text style={styles.letter}>CVV</Text>
-        </View>
-
-        <View style={styles.column2}>
+        <View style={styles.formGroup}>
+          <Text style={styles.label}>Name</Text>
           <TextInput
-            placeholder="MMYY"
-            placeholderTextColor="rgba(255,255,255,0.5)"
-            onChangeText={TextInputDate => this.setState({ TextInputDate })}
-            style={styles.short}
+            placeholder           = "As It Appears On Your Card"
+            placeholderTextColor  = "rgba(255,255,255,0.5)"
+            onChangeText          = {TextInputName => this.setState({ TextInputName })}
+            style                 = {styles.input}
           />
+
+          <Text style={styles.label}>Email</Text>
           <TextInput
-            placeholder="XXX"
-            placeholderTextColor="rgba(255,255,255,0.5)"
-            onChangeText={CVV => this.setState({ CVV })}
-            style={styles.short}
+            placeholder          = "Enter Email For E-Receipts"
+            placeholderTextColor = "rgba(255,255,255,0.5)"
+            onChangeText         = {Email => this.setState({ Email })}
+            style                = {styles.input}
+          />
+
+          <Text style={styles.label}>Card Number</Text>
+          <TextInput
+            placeholder          = "No dashes or spaces"
+            placeholderTextColor = "rgba(255,255,255,0.5)"
+            onChangeText         = {TextInputCard => this.setState({ TextInputCard })}
+            style                = {styles.input}
+          />
+          
+          <Text style={styles.label}>Expire date</Text>
+          <TextInput
+            placeholder          = "MMYY"
+            placeholderTextColor = "rgba(255,255,255,0.5)"
+            onChangeText         = {TextInputDate => this.setState({ TextInputDate })}
+            style                = {styles.input}
+          />
+
+          <Text style={styles.label}>CVV</Text>
+          <TextInput
+            placeholder          = "XXX"
+            placeholderTextColor = "rgba(255,255,255,0.5)"
+            onChangeText         = {CVV => this.setState({ CVV })}
+            style                = {styles.input}
           />
         </View>
-        
 
-        <TouchableOpacity onPress={this.Payit}>
-          <Text style={styles.pay}>Pay</Text>
-        </TouchableOpacity>
-        
-        <TouchableOpacity onPress={this.Cancel}>
-          <Text style={styles.cancel}>Cancel</Text>
-        </TouchableOpacity>
+        <View style={styles.buttonGroup}>
+          <TouchableOpacity onPress={this.paymentProcessing}>
+            <Text style={styles.paymentButton}>Confirm Payment</Text>
+          </TouchableOpacity>
+          
+          <TouchableOpacity onPress={this.Cancel}>
+            <Text style={styles.cancelText}>Cancel Payment</Text>
+          </TouchableOpacity>
+        </View>
 
-      </View>
-      
+      </View>  
     );
   }
 }
@@ -129,13 +152,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#0097e6',
-    padding: 20
-  },
-
-  logo: {
-    marginLeft:'35%',
-    width:100,
-    height:100,
+    width: '100%',
+    height: '100%',
   },
  
   input: {
@@ -143,16 +161,28 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.2)',
     color: '#FFF',
     paddingHorizontal: 10,
-    fontSize: 15
+    fontSize: 15,
+    width: '100%'
   },
 
-  letter: {
+  label: {
     color: '#ffffb3',
     fontSize: 20,
-    marginTop: 20
+    marginTop: 10,
+    textAlign:'center'
   },
 
-  pay: {
+  formGroup: {
+    alignItems:'center',
+    justifyContent:'space-around'
+  },
+
+  buttonGroup: {
+    flexDirection: 'row',
+    justifyContent: 'space-around'
+  },
+
+  paymentButton: {
     color: '#bfff00',
     fontSize: 20,
     paddingTop:5,
@@ -163,7 +193,7 @@ const styles = StyleSheet.create({
     width:70
   },
 
-   cancel: {
+   cancelText: {
     color: '#feca57',
     fontSize: 20,
     paddingTop:5,
@@ -172,27 +202,6 @@ const styles = StyleSheet.create({
     paddingVertical:5,
     width:70,
     textDecorationLine: 'underline'
-  },
-
-  short:{
-   height: 50,
-    backgroundColor: 'rgba(255,255,255,0.2)',
-    color: '#FFF',
-    paddingHorizontal: 10,
-    fontSize: 16,
-    textAlign:'center',
-    width:70
-  },
-
-  column1: {
-    flexDirection: 'row',
-    justifyContent: 'space-between'
-  },
-
-  column2: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between'
-  },
+  }
 
 });

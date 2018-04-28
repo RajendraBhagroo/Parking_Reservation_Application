@@ -28,14 +28,13 @@ export default class MainMenu extends React.Component {
 
     /* User Is Logged Out, Redirects to Login View */
     logout() {
-
       firebase.auth().signOut()
       .then( (res) => {
-        Actions.pop();
+        Actions.login();
       }).catch( (error) =>
         this.toast(error));
 
-		  Vibration.vibrate(20);
+      Vibration.vibrate(20);
     }
 
     /* Displays Android Style Notification Bubble */
