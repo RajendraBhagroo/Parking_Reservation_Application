@@ -19,8 +19,8 @@ export default class ReservationLocation extends React.Component {
   */
  
   state = {
-    selectedTime1: "12:00AM",
-    selectedTime2:"12:00AM",
+    selectedTime1: "0",
+    selectedTime2:"0",
     selectedSpot:"Default Value",
     cartArray:[]
   }
@@ -28,65 +28,155 @@ export default class ReservationLocation extends React.Component {
   convertValtoTime(value){
     var timeVal;
     switch(value){
-      case 0:
+      case "0":
       timeVal="12:00AM";
       break;
-      case 1:
+      case "1":
       timeVal="12:30AM";
       break;
-      case 2:
+      case "2":
       timeVal="1:00AM";
       break;
-      case 3:
+      case "3":
       timeVal="1:30AM";
       break;
-      case 4:
+      case "4":
       timeVal="2:00AM";
       break;
-      case 5:
+      case "5":
       timeVal="2:30AM";
       break;
-      case 6:
+      case "6":
       timeVal="3:00AM";
       break;
-      case 7:
+      case "7":
       timeVal="3:30AM";
       break;
-      case 8:
+      case "8":
       timeVal="4:00AM";
       break;
-      case 9:
+      case "9":
       timeVal="4:30AM";
       break;
-      case 10:
+      case "10":
       timeVal="5:00AM";
       break;
-      case 11:
+      case "11":
       timeVal="5:30AM";
       break;
-      case 12:
+      case "12":
       timeVal="6:00AM";
       break;
-      case 13:
+      case "13":
       timeVal="6:30AM";
       break;
-      case 14:
+      case "14":
       timeVal="7:00AM";
       break;
-      case 15:
+      case "15":
       timeVal="7:30AM";
       break;
-      case 16:
+      case "16":
       timeVal="8:00AM";
       break;
-      case 19:
+      case "17":
       timeVal="8:30AM";
       break;
-      case 20:
+      case "18":
       timeVal="9:00AM"
       break;
-    }
+      case "19":
+      timeVal="9:30AM"
+      break;
+      case "20":
+      timeVal="10:00AM"
+      break;
+      case "21":
+      timeVal="10:30AM"
+      break;
+      case "22":
+      timeVal="11:00AM"
+      break;
+      case "23":
+      timeVal="11:30AM";
+      break;
+      case "24":
+      timeVal="12:00PM";
+      break;
+      case "25":
+      timeVal="12:30PM";
+      break;
+      case "26":
+      timeVal="1:00PM";
+      break;
+      case "27":
+      timeVal="1:30PM";
+      break;
+      case "28":
+      timeVal="2:00PM";
+      break;
+      case "29":
+      timeVal="2:30PM";
+      break;
+      case "30":
+      timeVal="3:00PM";
+      break;
+      case "31":
+      timeVal="3:30PM";
+      break;
+      case "32":
+      timeVal="4:00PM";
+      break;
+      case "33":
+      timeVal="4:30PM";
+      break;
+      case "34":
+      timeVal="5:00PM";
+      break;
+      case "35":
+      timeVal="5:30PM";
+      break;
+      case "36":
+      timeVal="6:00PM";
+      break;
+      case "37":
+      timeVal="6:30PM";
+      break;
+      case "38":
+      timeVal="7:00PM";
+      break;
+      case "39":
+      timeVal="7:30PM";
+      break;
+      case "40":
+      timeVal="8:00PM";
+      break;
+      case "41":
+      timeVal="8:30PM"
+      break;
+      case "42":
+      timeVal="9:00PM"
+      break;
+      case "43":
+      timeVal="9:30PM"
+      break;
+      case "44":
+      timeVal="10:00PM"
+      break;
+      case "45":
+      timeVal="10:30PM"
+      break;
+      case "46":
+      timeVal="11:00PM"
+      break;
+      case "47":
+      timeVal="11:30PM"
+      break;
+      default:
+      timeVal="Error"
 
+    }
+    return timeVal;
   }
   paymentView(){
     if(this.state.cartArray.length==0){
@@ -142,7 +232,7 @@ export default class ReservationLocation extends React.Component {
   renderGridItem = (item) => (
     <View>
       <TouchableOpacity style = {styles.spot} onPress = {()=>this.popup(item.name)}>
-            <Text style = {styles.spotText}>{item.name}</Text>
+            <Text style = {styles.modalButtonText}>{item.name}</Text>
       </TouchableOpacity>
     </View>
   );
@@ -150,8 +240,8 @@ export default class ReservationLocation extends React.Component {
   renderSelectedspots=(item)=> (
     <View>
 
-      <TouchableOpacity style ={styles.spot} onPress={()=>this.removeSpot(item.spotName,item.startTime,item.endTime)}>
-        <Text>{item.spotName}</Text>
+      <TouchableOpacity style ={styles.SelectedSpot} onPress={()=>this.removeSpot(item.spotName,item.startTime,item.endTime)}>
+        <Text style= {styles.modalButtonText}>Spot:{item.spotName} Time:{this.convertValtoTime(item.startTime)}-{this.convertValtoTime(item.endTime)}</Text>
       </TouchableOpacity>
 
     </View>
@@ -182,7 +272,7 @@ export default class ReservationLocation extends React.Component {
 
     return (
       <View style={styles.container}>
-        <Text style={styles.locationBannerText}>NYIT: Parking Garage</Text>
+        <Text style={styles.modalButtonText}>NYIT: Parking Garage</Text>
 
         <Text>{this.cart}</Text>
 
@@ -208,8 +298,8 @@ export default class ReservationLocation extends React.Component {
 
           <PopupDialog ref={(popupDialogReview) => { this.popupDialogReview= popupDialogReview; }}>
             <View>
+            <Text style ={styles.modalButtonText}>Click a spot to remove</Text>
               <GridLayout items={this.state.cartArray} itemsPerRow={1} renderItem={this.renderSelectedspots}/>
-              <Text>PopupDialogReview</Text>
               <TouchableOpacity style = {styles.navButton} onPress = {() => this.popupDialogReview.dismiss()}>
                 <Text style = {styles.navButtonText}>Close</Text>
               </TouchableOpacity>
@@ -218,7 +308,7 @@ export default class ReservationLocation extends React.Component {
 
 
           <PopupDialog ref={(popupDialog) => { this.popupDialog = popupDialog; }}>       
-            <View style={styles.modalSelection}>
+            <View>
 
               <Text>{this.state.cartArray.length}</Text>
             
@@ -349,7 +439,7 @@ const styles = StyleSheet.create({
 
   container: {
     flex: 1,
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#292a2b',
   },
 
   locationBannerText: {
@@ -365,8 +455,8 @@ const styles = StyleSheet.create({
     width: '100%'
   },
   SelectedSpot: {
-    height: 80,
-    width: 160,
+    height: 55,
+    width: 250,
     backgroundColor: '#28a745',
     padding: 5,
     justifyContent: 'center'
@@ -376,7 +466,7 @@ const styles = StyleSheet.create({
     height: 80,
     width: 40,
     backgroundColor: '#28a745',
-    padding: 5,
+    padding: 10,
     justifyContent: 'center'
   },
 
@@ -388,13 +478,15 @@ const styles = StyleSheet.create({
     paddingVertical: 25
   },
 
-  modalSelection: {
+  modalSelection: 
+  {
+
   },
 
   modalButtonGroup: {
     alignItems: 'center',
     justifyContent:'center',
-    top: 10
+    top: 8
   },
 
   modalButton: {
