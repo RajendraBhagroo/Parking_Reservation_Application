@@ -21,9 +21,13 @@ export default class App extends React.Component {
       messagingSenderId: "342940906918"
     };
     firebase.initializeApp(config);
+    
+    /* Supresses Warnings In Production */
+    console.disableYellowBox = true;
   }
 
 
+  /* <Routes/> Is What Initiates The Entire Application */
   render() {
     return (
       <View style = {styles.container}>

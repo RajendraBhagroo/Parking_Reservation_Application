@@ -3,6 +3,7 @@ import { Component } from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 
 
+/* This Class Will Be Used As A Component To Render The Application Logo */
 export default class Logo extends React.Component {
 	render(){
 		return(

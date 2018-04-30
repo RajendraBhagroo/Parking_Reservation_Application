@@ -2,7 +2,7 @@ import React from 'react';
 import { Component } from 'react';
 import { StyleSheet, Text, View, StatusBar, TouchableOpacity, ToastAndroid, Picker } from 'react-native';
 
-/* Allows For Routing */
+/* Allows For Routing Between Views */
 import { Actions } from 'react-native-router-flux';
 
 /* Allows For Interactive Grid Rendering */
@@ -26,158 +26,161 @@ export default class ReservationLocation extends React.Component {
   }
  
   convertValtoTime(value){
+    
     var timeVal;
+    
     switch(value){
       case "0":
-      timeVal="12:00AM";
-      break;
+        timeVal="12:00AM";
+        break;
       case "1":
-      timeVal="12:30AM";
-      break;
+        timeVal="12:30AM";
+        break;
       case "2":
-      timeVal="1:00AM";
-      break;
+        timeVal="1:00AM";
+        break;
       case "3":
-      timeVal="1:30AM";
-      break;
+        timeVal="1:30AM";
+        break;
       case "4":
-      timeVal="2:00AM";
-      break;
+        timeVal="2:00AM";
+        break;
       case "5":
-      timeVal="2:30AM";
-      break;
+        timeVal="2:30AM";
+        break;
       case "6":
-      timeVal="3:00AM";
-      break;
+        timeVal="3:00AM";
+        break;
       case "7":
-      timeVal="3:30AM";
-      break;
+        timeVal="3:30AM";
+        break;
       case "8":
-      timeVal="4:00AM";
-      break;
+        timeVal="4:00AM";
+        break;
       case "9":
-      timeVal="4:30AM";
-      break;
+        timeVal="4:30AM";
+        break;
       case "10":
-      timeVal="5:00AM";
-      break;
+        timeVal="5:00AM";
+        break;
       case "11":
-      timeVal="5:30AM";
-      break;
+        timeVal="5:30AM";
+        break;
       case "12":
-      timeVal="6:00AM";
-      break;
+        timeVal="6:00AM";
+        break;
       case "13":
-      timeVal="6:30AM";
-      break;
+        timeVal="6:30AM";
+        break;
       case "14":
-      timeVal="7:00AM";
-      break;
+        timeVal="7:00AM";
+        break;
       case "15":
-      timeVal="7:30AM";
-      break;
+        timeVal="7:30AM";
+        break;
       case "16":
-      timeVal="8:00AM";
-      break;
+        timeVal="8:00AM";
+        break;
       case "17":
-      timeVal="8:30AM";
-      break;
+        timeVal="8:30AM";
+        break;
       case "18":
-      timeVal="9:00AM"
-      break;
+        timeVal="9:00AM";
+        break;
       case "19":
-      timeVal="9:30AM"
-      break;
+        timeVal="9:30AM";
+        break;
       case "20":
-      timeVal="10:00AM"
-      break;
+        timeVal="10:00AM";
+        break;
       case "21":
-      timeVal="10:30AM"
-      break;
+        timeVal="10:30AM";
+        break;
       case "22":
-      timeVal="11:00AM"
-      break;
+        timeVal="11:00AM";
+        break;
       case "23":
-      timeVal="11:30AM";
-      break;
+        timeVal="11:30AM";
+        break;
       case "24":
-      timeVal="12:00PM";
-      break;
+        timeVal="12:00PM";
+        break;
       case "25":
-      timeVal="12:30PM";
-      break;
+        timeVal="12:30PM";
+        break;
       case "26":
-      timeVal="1:00PM";
-      break;
+        timeVal="1:00PM";
+        break;
       case "27":
-      timeVal="1:30PM";
-      break;
+        timeVal="1:30PM";
+        break;
       case "28":
-      timeVal="2:00PM";
-      break;
+        timeVal="2:00PM";
+        break;
       case "29":
-      timeVal="2:30PM";
-      break;
+        timeVal="2:30PM";
+        break;
       case "30":
-      timeVal="3:00PM";
-      break;
+        timeVal="3:00PM";
+        break;
       case "31":
-      timeVal="3:30PM";
-      break;
+        timeVal="3:30PM";
+        break;
       case "32":
-      timeVal="4:00PM";
-      break;
+        timeVal="4:00PM";
+        break;
       case "33":
-      timeVal="4:30PM";
-      break;
+        timeVal="4:30PM";
+        break;
       case "34":
-      timeVal="5:00PM";
-      break;
+        timeVal="5:00PM";
+        break;
       case "35":
-      timeVal="5:30PM";
-      break;
+        timeVal="5:30PM";
+        break;
       case "36":
-      timeVal="6:00PM";
-      break;
+        timeVal="6:00PM";
+        break;
       case "37":
-      timeVal="6:30PM";
-      break;
+        timeVal="6:30PM";
+        break;
       case "38":
-      timeVal="7:00PM";
-      break;
+        timeVal="7:00PM";
+        break;
       case "39":
-      timeVal="7:30PM";
-      break;
+        timeVal="7:30PM";
+        break;
       case "40":
-      timeVal="8:00PM";
-      break;
+        timeVal="8:00PM";
+        break;
       case "41":
-      timeVal="8:30PM"
-      break;
+        timeVal="8:30PM";
+        break;
       case "42":
-      timeVal="9:00PM"
-      break;
+        timeVal="9:00PM";
+        break;
       case "43":
-      timeVal="9:30PM"
-      break;
+        timeVal="9:30PM";
+        break;
       case "44":
-      timeVal="10:00PM"
-      break;
+        timeVal="10:00PM";
+        break;
       case "45":
-      timeVal="10:30PM"
-      break;
+        timeVal="10:30PM";
+        break;
       case "46":
-      timeVal="11:00PM"
-      break;
+        timeVal="11:00PM";
+        break;
       case "47":
-      timeVal="11:30PM"
-      break;
+        timeVal="11:30PM";
+        break;
       default:
-      timeVal="Error"
-
+        timeVal="Error";
     }
     return timeVal;
   }
+  
+  /* Redirects User To Payment View */
   paymentView(){
     if(this.state.cartArray.length==0){
       this.toast("You must select a spot first")
@@ -186,6 +189,7 @@ export default class ReservationLocation extends React.Component {
       }
   }
   
+  /* Pop Up That Allows User To View And Delete Any Reservations They Do Not Want */
   popupReview(){
     this.forceUpdate();
     if(this.state.cartArray.length==0)
@@ -211,7 +215,6 @@ export default class ReservationLocation extends React.Component {
   addSpot(){
     this.state.cartArray.push({spotName:this.state.selectedSpot,startTime:this.state.selectedTime1,endTime:this.state.selectedTime2});
     this.popupDialog.dismiss();
-    this.toast(String(this.state.cartArray.length));
   }
 
   removeSpot(spotID,sTime,eTime){
@@ -239,11 +242,9 @@ export default class ReservationLocation extends React.Component {
 
   renderSelectedspots=(item)=> (
     <View>
-
       <TouchableOpacity style ={styles.SelectedSpot} onPress={()=>this.removeSpot(item.spotName,item.startTime,item.endTime)}>
         <Text style= {styles.modalButtonText}>Spot:{item.spotName} Time:{this.convertValtoTime(item.startTime)}-{this.convertValtoTime(item.endTime)}</Text>
       </TouchableOpacity>
-
     </View>
   );
 
@@ -309,8 +310,6 @@ export default class ReservationLocation extends React.Component {
 
           <PopupDialog ref={(popupDialog) => { this.popupDialog = popupDialog; }}>       
             <View>
-
-              <Text>{this.state.cartArray.length}</Text>
             
               <Picker selectedValue={this.state.selectedTime1} onValueChange={(itemValue, itemIndex) => this.setState({selectedTime1: itemValue})}>
                 <Picker.Item label="12:00AM" value="0"/>
@@ -478,15 +477,10 @@ const styles = StyleSheet.create({
     paddingVertical: 25
   },
 
-  modalSelection: 
-  {
-
-  },
-
   modalButtonGroup: {
     alignItems: 'center',
     justifyContent:'center',
-    top: 8
+    top: 25
   },
 
   modalButton: {

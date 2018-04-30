@@ -3,10 +3,11 @@ import { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, ToastAndroid, Vibration } from 'react-native';
 import * as firebase from 'firebase';
 
-/* Allows For Routing */
+/* Allows For Routing Between Views */
 import { Actions } from 'react-native-router-flux';
 
 
+/* This Class Will Be Used As A Component To Rener A Sign Up Form For User Registration */
 export default class SignupForm extends React.Component {
 
   state = { email: '', password: '', verifyPassword: '' };
@@ -35,6 +36,8 @@ export default class SignupForm extends React.Component {
     /* Vibrates Sign Up Button */
     Vibration.vibrate(20);
 
+
+    /* Validation Of Email & Password Sign Up Form */
     email = email.trim().toLocaleLowerCase();
     password = password.trim();
     verifyPassword = verifyPassword.trim();
@@ -78,7 +81,8 @@ export default class SignupForm extends React.Component {
     );
   }
 
-  
+
+  /* This Component Will Render The Sign Up Form For User Registration */
 	render(){
 		return(
 			<View style = {styles.container}>

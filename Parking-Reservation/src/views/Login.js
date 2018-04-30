@@ -6,9 +6,11 @@ import { StyleSheet, Text, View, StatusBar, TouchableOpacity, BackHandler, Vibra
 import Logo from '../components/Logo';
 import LoginForm from '../components/LoginForm';
 
-/* Allows For Routing */
+/* Allows For Routing Between Views */
 import { Actions } from 'react-native-router-flux';
 
+
+/* This View Is The Initial View, It Presents The User With A Login Form, With A Route To The Sign Up View */
 export default class Login extends React.Component {
 
 	componentWillMount() {

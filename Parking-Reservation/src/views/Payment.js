@@ -7,9 +7,11 @@ import firebase from 'firebase';
 /* Import Custom Components */
 import Logo from '../components/Logo';
 
-/* Allows For Routing */
+/* Allows For Routing Between Views */
 import { Actions } from 'react-native-router-flux';
 
+
+/* This View Is Used To Finalize Reservation Spots And Validate User Payment Info, Sending Reserved Spots To Firebase NoSQL Database & Returning The User To The Main Menu */
 export default class Payment extends React.Component {
   
   constructor(props){
@@ -24,29 +26,34 @@ export default class Payment extends React.Component {
     };
   }
 
+  /* Method Validates User Information And Returns User To Main Menu Upon Success. Also Sends Reservation Objects [JSON] To Firebase NoSQL Database Under Specific User ID */
   paymentProcessing = () => {
-  
     if(this.paymentVerification()){
 
       firebase.database().ref('reservations/' + firebase.auth().currentUser.uid ).set({
        User_Reservations_Cart: this.state.FinalCart
       });
-
+      
+      Actions.mainMenu();
+    } else {
+      Alert.alert('Information Could Not Be Validated. Please Try Again');
     }
-
   }
 
+  /* Method Runs If User Hits 'Cancel Payment' Button */  
   Cancel = () => {
-    console.log(this.state.FinalCart)
     Actions.reservationLocation();
   }
 
+  /* This Method Performs The ACTUAL Validation Of User Information. Boolean Value Is Sent To paymentProcessing() Method  */
   paymentVerification = () => {
     const { TextInputName } = this.state;
     const { Email }         = this.state;
     const { TextInputCard } = this.state;
     const { TextInputDate } = this.state;
     const { CVV }           = this.state;
+
+    Vibration.vibrate(20);
 
     if (TextInputName == '' || Email == '' || TextInputCard == '' || TextInputDate == '' || CVV == ''){
       Alert.alert('Please Provide All Information');
@@ -68,13 +75,10 @@ export default class Payment extends React.Component {
 
               firebase.auth().signOut()
               .then( (res) => {
-                Actions.pop();
+                Actions.login();
               }).catch( (error) =>
                 this.toast(error));
-        
-              Vibration.vibrate(20);
-              
-              Actions.login();
+
             }
           }
         }
@@ -83,6 +87,7 @@ export default class Payment extends React.Component {
   };
 
 
+  /* Presents User With Inputs For Payment Validation, Redirects To Login Screen If Successful */
   render() {
     return (
       <View style={styles.container}>

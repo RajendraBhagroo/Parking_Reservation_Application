@@ -3,10 +3,11 @@ import { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, ToastAndroid, Vibration } from 'react-native';
 import * as firebase from 'firebase';
 
-/* Allows For Routing */
+/* Allows For Routing Between Views */
 import { Actions } from 'react-native-router-flux';
 
 
+/* This Class Will Be Used As A Component To Render A Login Form */
 export default class LoginForm extends React.Component {
   
   state = { email: '', password: '' };
@@ -31,6 +32,7 @@ export default class LoginForm extends React.Component {
     /* Vibrates Login Button */
     Vibration.vibrate(20);
 
+    /* Validation Of Email & Password */
     if((email != '') && (password != '')){
     firebase.auth().signInWithEmailAndPassword(email.trim().toLocaleLowerCase(), password.trim())
             .then(()  => { this.MainMenuView(); })
@@ -73,6 +75,7 @@ export default class LoginForm extends React.Component {
   }
 
 
+  /* Render Method Displays UI, CANNOT COMMENT Within This Method! */
 	render(){
 		return(
 			<View style = {styles.container}>

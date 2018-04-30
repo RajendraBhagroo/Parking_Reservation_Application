@@ -6,10 +6,11 @@ import { StyleSheet, Text, View, StatusBar, TouchableOpacity, Vibration } from '
 import Logo from '../components/Logo';
 import SignupForm from '../components/SignupForm';
 
-/* Allows For Routing */
+/* Allows For Routing Between Views */
 import { Actions } from 'react-native-router-flux';
 
 
+/* This View Loads Sign Up Form With Option To Return To Login View To Log In */
 export default class Signup extends React.Component {
 
   /* Redirects To Login View */

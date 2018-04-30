@@ -5,10 +5,11 @@ import { StyleSheet, Text, View, Image, StatusBar, TouchableOpacity, Alert, Vibr
 /* FireBase */
 import firebase from 'firebase';
 
-/* Allows For Routing */
+/* Allows For Routing Between Views */
 import { Actions } from 'react-native-router-flux';
 
 
+/* This View Retrieves Users Specific Reservations And Allows them To View Information About Reservations */
 export default class ReservationReview extends React.Component {
 
     constructor(props){
@@ -21,7 +22,6 @@ export default class ReservationReview extends React.Component {
         }
       }
 
-    dataBase  = firebase.database();
     userID    = firebase.auth().currentUser.uid;
     userEmail = firebase.auth().currentUser.email[0].toUpperCase() + firebase.auth().currentUser.email.substring(1);
 
@@ -31,23 +31,23 @@ export default class ReservationReview extends React.Component {
         Vibration.vibrate(20);
     }
 
-    update = (i) => {
-        this.dataBase.ref('reservations/'+ this.userID +'/cart/' + i +'/spotName') .on('value', snapshot => {this.setState({spotName:  snapshot.val()});});
-        this.dataBase.ref('reservations/'+ this.userID +'/cart/' + i +'/startTime').on('value', snapshot => {this.setState({startTime: snapshot.val()});});
-        this.dataBase.ref('reservations/'+ this.userID +'/cart/' + i +'/endTime')  .on('value', snapshot => {this.setState({endTime:   snapshot.val()});});
+    deleteReservation(i){
+      firebase.database().ref('reservations/'+ this.userID +'/cart/' + i).remove();
     }
 
-    viewReservations = () => {
+    viewReservations(){
         for( let i = 0; i < 3; i++){
 
-            this.update(i);
+            firebase.database().ref('reservations/'+ this.userID +'/cart/' + i +'/spotName') .on('value', snapshot => {this.setState({spotName:  snapshot.val()});});
+            firebase.database().ref('reservations/'+ this.userID +'/cart/' + i +'/startTime').on('value', snapshot => {this.setState({startTime: snapshot.val()});});
+            firebase.database().ref('reservations/'+ this.userID +'/cart/' + i +'/endTime')  .on('value', snapshot => {this.setState({endTime:   snapshot.val()});});
 
             Alert.alert(
                 'Reservation Number: ' + i,
                 'Spot Number: ' + this.state.spotName + '\nStart Time: ' + this.state.startTime + '\nEnd Time: ' + this.state.endTime,
                 [
-                    {text: 'Cancel Reservation', onPress: console.log('Reservation on selected slot has been canceled.')},
-                    {text: 'OK', onPress: console.log('OK Pressed')},
+                    {text: 'Cancel Reservation', onPress: (i) => this.deleteReservation(i)},
+                    {text: 'OK'},
                 ],
                 { cancelable: false }
             );

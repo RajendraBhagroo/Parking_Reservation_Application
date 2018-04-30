@@ -1,13 +1,16 @@
 import React from 'react';
 import { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
+
+/* Allows For Rendering Of Google Maps API And Markers On Map */
 import MapView from 'react-native-maps'; 
 import Marker from 'react-native-maps';
 
-/* Allows For Routing */
+/* Allows For Routing Between Views */
 import { Actions } from 'react-native-router-flux';
 
 
+/* This Class Will Be Used As A Component To Render A Map From Google Maps API */
 export default class OverviewMap extends React.Component {
 
     ReservationLocationView(){
@@ -15,6 +18,7 @@ export default class OverviewMap extends React.Component {
       }
 
 
+    /* MapView Is The Actual Google Map. The Longitude And Latitude Are Centered Over NYIT: OW Campus */  
 	render(){
         return(
             <View style = {styles.mapContainer}>
@@ -39,6 +43,7 @@ export default class OverviewMap extends React.Component {
         )
 	}
 }
+
 
 const styles = StyleSheet.create({
 

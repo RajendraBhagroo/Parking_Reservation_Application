@@ -11,6 +11,7 @@ import ReservationLocation from './views/ReservationLocation';
 import Payment from './views/Payment';
 import ReservationReview from './views/ReservationReview';
 
+/* This File Defines The Keys To Access Each View. Method: Actions.[ViewName]({Object To Send to ViewName}) */
 export default class Routes extends React.Component {
 	render() {
 		return(

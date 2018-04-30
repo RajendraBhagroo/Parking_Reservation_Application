@@ -6,12 +6,13 @@ import { StyleSheet, Text, View, StatusBar, ToastAndroid, TouchableOpacity, Vibr
 import Logo from '../components/Logo';
 
 /* FireBase */
-import * as firebase from 'firebase';
+import firebase from 'firebase';
 
-/* Allows For Routing */
+/* Allows For Routing Between Views */
 import { Actions } from 'react-native-router-flux';
 
 
+/* This View Is Used As A Proxy To Route To Either ReservationMap, ReservationReview, Or Logout To The Main Menu */
 export default class MainMenu extends React.Component {
     
     /* Redirects To ReservationMap View */

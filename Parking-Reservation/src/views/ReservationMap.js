@@ -6,6 +6,7 @@ import { StyleSheet, Text, View, StatusBar, TouchableOpacity } from 'react-nativ
 import OverviewMap from '../components/OverviewMap';
 
 
+/* This View Loads Google Maps API For user To Select Parking Garage Location [NYIT] */
 export default class ReservationMap extends React.Component {
   
 	render() {
