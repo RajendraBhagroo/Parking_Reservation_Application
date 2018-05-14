@@ -2,6 +2,16 @@ import React from 'react';
 import { Component } from 'react';
 import { StyleSheet, View, StatusBar } from 'react-native';
 
+/* .env API Info */
+import {
+  REACT_APP_API_KEY,
+  REACT_APP_AUTH_DOMAIN,
+  REACT_APP_DATABASE_URL,
+  REACT_APP_PROJECT_ID,
+  REACT_APP_STORAGE_BUCKET,
+  REACT_APP_MESSAGING_SENDER_ID
+} from 'babel-plugin-dotenv';
+
 /* FireBase */
 import firebase from 'firebase';
 
@@ -13,12 +23,12 @@ export default class App extends React.Component {
   /* Firebase Integration */
   componentWillMount() {
     var config = {
-      apiKey: "AIzaSyCntfGKhOaiKl8I0OKWVoB55AazqBSkcZo",
-      authDomain: "parking-reservation-c681e.firebaseapp.com",
-      databaseURL: "https://parking-reservation-c681e.firebaseio.com",
-      projectId: "parking-reservation-c681e",
-      storageBucket: "parking-reservation-c681e.appspot.com",
-      messagingSenderId: "342940906918"
+      apiKey: REACT_APP_API_KEY ,
+      authDomain: REACT_APP_AUTH_DOMAIN,
+      databaseURL: REACT_APP_DATABASE_URL,
+      projectId: REACT_APP_PROJECT_ID,
+      storageBucket: REACT_APP_STORAGE_BUCKET,
+      messagingSenderId: REACT_APP_MESSAGING_SENDER_ID
     };
     firebase.initializeApp(config);
     
